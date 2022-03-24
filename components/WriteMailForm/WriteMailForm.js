@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Button } from "../Button/Button";
 
-export default function WriteMailForm() {
+export default function WriteMailForm({ handleSubmit }) {
   return (
     <section>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h1>Write Mail</h1>
-        <MailContent />
+        <MailContent required />
         <Button>Send</Button>
       </form>
     </section>
@@ -18,9 +18,10 @@ const MailContent = styled.textarea`
   color: var(--text-color);
   font-size: 1.5em;
   margin: 1rem 0;
+  margin-bottom: 0.2rem;
   padding: 1rem;
   width: 100%;
-  height: 300px;
+  height: 65vh;
   border: 2px solid #877bf4;
   border-radius: 2px;
   background-color: var(--window-background-color);
