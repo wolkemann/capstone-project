@@ -4,8 +4,11 @@ import { Button } from "../Button/Button";
 export default function WriteMailForm() {
   return (
     <section>
-      <MailContent></MailContent>
-      <Button>Send</Button>
+      <form>
+        <h1>Write Mail</h1>
+        <MailContent />
+        <Button>Send</Button>
+      </form>
     </section>
   );
 }
