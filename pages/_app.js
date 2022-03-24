@@ -1,26 +1,24 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { GlobalStyle } from "../components/GlobalStyles/GlobalStyle";
+import { SWRConfig } from "swr";
+import { SessionProvider } from "next-auth/react";
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`
-
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-}
-
-export default function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <>
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <SessionProvider session={session}>
+        <SWRConfig
+          value={{
+            fetcher: (resource, init) =>
+              fetch(resource, init).then((res) => res.json()),
+            refreshInterval: 3000,
+          }}
+        >
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </SWRConfig>
+      </SessionProvider>
     </>
-  )
+  );
 }
+
+export default MyApp;
