@@ -5,8 +5,11 @@ import { Button } from "../Button/Button";
 
 export default function WriteMailForm({ handleSubmit }) {
   const [charUsed, setCharUsed] = useState(0);
+  const [maxChar, setMaxChar] = useState(0);
 
-  useEffect(() => {}, [charUsed]);
+  useEffect(() => {
+    setMaxChar(mailText.maxLength);
+  }, []);
 
   function handleOnChange(event) {
     setCharUsed(event.target.value.length);
@@ -22,10 +25,11 @@ export default function WriteMailForm({ handleSubmit }) {
             id="mailText"
             name="mailText"
             placeholder="Write your letter"
+            maxLength={560}
             required
           />
           <SignatureWrapper>
-            <p>{charUsed}</p> <p>- Fede</p>
+            <p>{maxChar - charUsed}</p> <p>- Fede</p>
           </SignatureWrapper>
         </FormWrapper>
         <Button>Send</Button>
@@ -37,8 +41,9 @@ export default function WriteMailForm({ handleSubmit }) {
 const FormWrapper = styled.div`
   margin: 0.5rem 0;
   padding: 1rem;
+  font-family: monospace;
   color: var(--text-color);
-  font-size: 1.5em;
+  font-size: 1.2em;
   border: 2px solid #877bf4;
   border-radius: 2px;
   background-color: var(--window-background-color);
@@ -48,7 +53,7 @@ const FormWrapper = styled.div`
 const MailContent = styled.textarea`
   resize: none;
   width: 100%;
-  height: 60vh;
+  height: 61vh;
   color: var(--text-color);
   font-size: 1em;
   border-width: 0;

@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Button = styled.button`
   width: 100%;
-  margin: 0.5rem 0;
   padding: 0.7rem 1rem;
   font-size: 1.2em;
   text-align: center;
