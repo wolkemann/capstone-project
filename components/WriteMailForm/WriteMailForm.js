@@ -1,25 +1,71 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { Button } from "../Button/Button";
 
-export default function WriteMailForm() {
+export default function WriteMailForm({ handleSubmit }) {
+  const [charUsed, setCharUsed] = useState(0);
+  const [maxChar, setMaxChar] = useState(0);
+
+  useEffect(() => {
+    setMaxChar(mailText.maxLength);
+  }, []);
+
+  function handleOnChange(event) {
+    setCharUsed(event.target.value.length);
+  }
+
   return (
     <section>
-      <MailContent></MailContent>
-      <Button>Send</Button>
+      <form onSubmit={handleSubmit} id="writeMail">
+        <h1>Write Mail</h1>
+        <FormWrapper>
+          <MailContent
+            onChange={handleOnChange}
+            id="mailText"
+            name="mailText"
+            placeholder="Write your letter"
+            maxLength={560}
+            required
+          />
+          <SignatureWrapper>
+            <p>{maxChar - charUsed}</p> <p>- Fede</p>
+          </SignatureWrapper>
+        </FormWrapper>
+        <Button>Send</Button>
+      </form>
     </section>
   );
 }
 
-const MailContent = styled.textarea`
-  resize: none;
-  color: var(--text-color);
-  font-size: 1.5em;
-  margin: 1rem 0;
+const FormWrapper = styled.div`
+  margin: 0.5rem 0;
   padding: 1rem;
-  width: 100%;
-  height: 300px;
+  font-family: monospace;
+  color: var(--text-color);
+  font-size: 1.2em;
   border: 2px solid #877bf4;
   border-radius: 2px;
   background-color: var(--window-background-color);
   box-shadow: 0px 0px 8px rgba(0 0 0 / 0.25);
+`;
+
+const MailContent = styled.textarea`
+  resize: none;
+  width: 100%;
+  height: 61vh;
+  color: var(--text-color);
+  font-size: 1em;
+  border-width: 0;
+  background-color: var(--window-background-color);
+
+  &:focus {
+    outline: 0;
+  }
+`;
+
+const SignatureWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;

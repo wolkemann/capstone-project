@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     --button-background-color: #7D65C9;
   }
   body {
+    font-family: monospace;
     background-color: #F6C9F1;
     color: var(--text-color);
   }
