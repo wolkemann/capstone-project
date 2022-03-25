@@ -17,6 +17,10 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #F6C9F1;
     color: var(--text-color);
   }
+  main {
+    margin: 1rem;
+    margin-bottom: 77px;
+  }
   textarea, input[type='button'] {
     font-family: 'Source Sans Pro', sans-serif;
   }

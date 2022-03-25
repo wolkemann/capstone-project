@@ -78,9 +78,7 @@ export default function Home() {
   }
 }
 
-const Wrapper = styled.main`
-  margin: 1rem;
-`;
+const Wrapper = styled.main``;
 
 const ResponseWindow = styled.div`
   display: flex;
