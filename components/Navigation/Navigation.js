@@ -49,6 +49,7 @@ export default function Navigation() {
 
 const NavWrapper = styled.nav`
   width: 100%;
+  height: 77px;
   position: fixed;
   bottom: 0;
   left: 0;
