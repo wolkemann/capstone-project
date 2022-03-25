@@ -13,8 +13,11 @@ export const GlobalStyle = createGlobalStyle`
     --button-background-color: #7D65C9;
   }
   body {
-    font-family: monospace;
+    font-family: 'Source Sans Pro', sans-serif;
     background-color: #F6C9F1;
     color: var(--text-color);
+  }
+  textarea, input[type='button'] {
+    font-family: 'Source Sans Pro', sans-serif;
   }
 `;
