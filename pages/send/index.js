@@ -4,6 +4,7 @@ import useSWR from "swr";
 import { useState } from "react";
 import WriteMailForm from "../../components/WriteMailForm/WriteMailForm";
 import { Button } from "../../components/Button/Button";
+import Navigation from "../../components/Navigation/Navigation";
 
 export default function Home() {
   const mails = useSWR("/api/mails");
@@ -35,6 +36,7 @@ export default function Home() {
       return (
         <Wrapper>
           <p>Pending</p>
+          <Navigation />
         </Wrapper>
       );
     case "success":
@@ -50,6 +52,7 @@ export default function Home() {
               Return to Home
             </Button>
           </ResponseWindow>
+          <Navigation />
         </Wrapper>
       );
     case "error":
@@ -62,12 +65,14 @@ export default function Home() {
               Try again
             </Button>
           </ResponseWindow>
+          <Navigation />
         </Wrapper>
       );
     default:
       return (
         <Wrapper>
           <WriteMailForm handleSubmit={handleSubmit} />
+          <Navigation />
         </Wrapper>
       );
   }

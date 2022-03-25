@@ -44,7 +44,7 @@ const FormWrapper = styled.div`
   font-family: monospace;
   color: var(--text-color);
   font-size: 1.2em;
-  border: 2px solid #877bf4;
+  border: 2px solid var(--window-border-color);
   border-radius: 2px;
   background-color: var(--window-background-color);
   box-shadow: 0px 0px 8px rgba(0 0 0 / 0.25);
