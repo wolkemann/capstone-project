@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react";
-import User from "../../../schemas/Mail";
+import User from "../../../schemas/User";
 import { connectDb } from "../../../utils/db";
 
 export default async function handler(request, response) {
