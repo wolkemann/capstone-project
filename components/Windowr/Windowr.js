@@ -22,7 +22,6 @@ const OuterWindow = styled.div`
 const InnerWindow = styled.div`
   padding: 1rem;
   color: var(--text-color);
-  font-size: 1.2em;
   border: 2px solid var(--window-border-color);
   border-radius: 7px;
   background-color: var(--main-background-color);
