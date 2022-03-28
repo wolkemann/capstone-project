@@ -3,7 +3,7 @@ import Link from "next/link";
 import useSWR from "swr";
 import { useState } from "react";
 import WriteMailForm from "../../components/WriteMailForm/WriteMailForm";
-import { Button } from "../../components/Button/Button";
+import Button from "../../components/Button/Button";
 import Navigation from "../../components/Navigation/Navigation";
 
 export default function Home() {
