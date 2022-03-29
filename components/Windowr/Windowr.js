@@ -10,7 +10,7 @@ export default function Windowr({ children }) {
 
 const OuterWindow = styled.div`
   margin: 0.5rem 0;
-  padding: 5px;
+  padding: 3px;
   color: var(--text-color);
   font-size: 1.2em;
   border: 2px solid var(--window-border-color);
