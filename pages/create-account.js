@@ -57,7 +57,7 @@ export default function CreateAccount() {
       }
     } else {
       // if the two passwords fields are not the same, then the error is shown
-      setFormError("The two password dont match!");
+      setFormError("The two passwords don't match!");
     }
   }
 
