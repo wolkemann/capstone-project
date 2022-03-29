@@ -4,7 +4,8 @@ import { useSession, getSession, signIn, signOut } from "next-auth/react";
 
 import { Input } from "../components/Input/Input";
 import Navigation from "../components/Navigation/Navigation";
-import Windowr from "../components/Windowr/Windowr";
+import OuterWindow from "../components/OuterWindow/OuterWindow";
+import InnerWindow from "../components/InnerWindow/InnerWindow";
 import { Button } from "../components/Button/Button";
 
 export default function Home() {
@@ -14,10 +15,15 @@ export default function Home() {
 
   return (
     <main>
-      <Windowr>
-        <button onClick={() => signIn()}>Sign in</button>
-        <button onClick={() => signOut()}>Sign out</button>
-      </Windowr>
+      <OuterWindow>
+        <InnerWindow>
+          <h2>Welcome, {session.user.name}</h2>
+          <Button onClick={() => signOut()}>Sign out</Button>
+        </InnerWindow>
+        <InnerWindow>
+          <Button>Write a Letter</Button>
+        </InnerWindow>
+      </OuterWindow>
       <Navigation />
     </main>
   );

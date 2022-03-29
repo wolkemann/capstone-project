@@ -2,7 +2,8 @@ import { getProviders, getSession, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import styled from "styled-components";
-import Windowr from "../components/Windowr/Windowr";
+import OuterWindow from "../components/OuterWindow/OuterWindow";
+import InnerWindow from "../components/InnerWindow/InnerWindow";
 import { Button } from "../components/Button/Button";
 import { Icon } from "@iconify/react";
 
@@ -20,17 +21,19 @@ export default function SignIn({ providers }) {
 
   return (
     <main>
-      <Windowr>
-        <Title>Sign In</Title>
-        <ProvidersContainer>
-          {Object.values(providers).map((provider, index) => (
-            <Button key={provider.name} onClick={() => signIn(provider.id)}>
-              <Icon icon={providersIcon[index]} color="#f8f8f8" height="30" />
-              <p>Sign in with {provider.name}</p>
-            </Button>
-          ))}
-        </ProvidersContainer>
-      </Windowr>
+      <Title>Sign In</Title>
+      <OuterWindow>
+        <InnerWindow>
+          <ProvidersContainer>
+            {Object.values(providers).map((provider, index) => (
+              <Button key={provider.name} onClick={() => signIn(provider.id)}>
+                <Icon icon={providersIcon[index]} color="#6926A9" height="30" />
+                <p>Sign in with {provider.name}</p>
+              </Button>
+            ))}
+          </ProvidersContainer>
+        </InnerWindow>
+      </OuterWindow>
     </main>
   );
 }
@@ -46,8 +49,6 @@ export async function getServerSideProps(context) {
 
 const Title = styled.h2`
   text-align: center;
-  margin: 1rem 0;
-  margin-top: 0;
 `;
 
 const ProvidersContainer = styled.div`

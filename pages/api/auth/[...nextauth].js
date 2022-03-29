@@ -12,6 +12,13 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
     }),
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,
@@ -25,12 +32,8 @@ export default NextAuth({
     async session({ session, user, token }) {
       return { ...session, user: { ...session.user, id: user.id } };
     },
-    async signIn({ session }) {
-      connectDb();
-      const filter = { email: email };
-      const update = { name: "rocco buttiglione" };
-      let generateNickname = await User.findOneAndUpdate(filter, update);
-
+    async signIn({ profile }) {
+      console.log(profile);
       return true;
     },
   },

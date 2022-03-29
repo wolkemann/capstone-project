@@ -2,12 +2,14 @@ import styled from "styled-components";
 import Link from "next/link";
 import useSWR from "swr";
 import { useState } from "react";
+import { useSession, getSession } from "next-auth/react";
 import WriteMailForm from "../components/WriteMailForm/WriteMailForm";
 import { Button } from "../components/Button/Button";
 import Navigation from "../components/Navigation/Navigation";
 
 export default function Home() {
   const mails = useSWR("/api/mails");
+  const { data: session } = useSession();
 
   const [submitState, setSubmitState] = useState("idle");
   const [error, setError] = useState();
@@ -34,14 +36,14 @@ export default function Home() {
   switch (submitState) {
     case "pending":
       return (
-        <Wrapper>
+        <main>
           <p>Pending</p>
           <Navigation />
-        </Wrapper>
+        </main>
       );
     case "success":
       return (
-        <Wrapper>
+        <main>
           <ResponseWindow>
             <ResponseTitle>Letter sent</ResponseTitle>
             <ResponseMessage>
@@ -53,11 +55,11 @@ export default function Home() {
             </Button>
           </ResponseWindow>
           <Navigation />
-        </Wrapper>
+        </main>
       );
     case "error":
       return (
-        <Wrapper>
+        <main>
           <ResponseWindow>
             <ResponseTitle>Error</ResponseTitle>
             <ResponseMessage>Oops! Something went wrong.</ResponseMessage>
@@ -66,19 +68,37 @@ export default function Home() {
             </Button>
           </ResponseWindow>
           <Navigation />
-        </Wrapper>
+        </main>
       );
     default:
       return (
-        <Wrapper>
-          <WriteMailForm handleSubmit={handleSubmit} />
+        <main>
+          <WriteMailForm
+            senderName={session.user.name}
+            handleSubmit={handleSubmit}
+          />
           <Navigation />
-        </Wrapper>
+        </main>
       );
   }
 }
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signin/",
+        permanent: false,
+      },
+    };
+  }
 
-const Wrapper = styled.main``;
+  return {
+    props: {
+      session,
+    },
+  };
+}
 
 const ResponseWindow = styled.div`
   display: flex;

@@ -1,18 +1,16 @@
 import styled from "styled-components";
 
-export default function Windowr({ children }) {
-  return (
-    <OuterWindow>
-      <InnerWindow>{children}</InnerWindow>
-    </OuterWindow>
-  );
+export default function WindowOut({ children }) {
+  return <OuterWindow>{children}</OuterWindow>;
 }
 
 const OuterWindow = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  gap: 3px;
   margin: 0.5rem 0;
   padding: 3px;
   color: var(--text-color);
-  font-size: 1.2em;
   border: 2px solid var(--window-border-color);
   border-radius: 7px;
   background-color: var(--window-background-color);
