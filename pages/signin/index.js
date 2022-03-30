@@ -2,9 +2,9 @@ import { getProviders, getSession, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import styled from "styled-components";
-import OuterWindow from "../components/OuterWindow/OuterWindow";
-import InnerWindow from "../components/InnerWindow/InnerWindow";
-import { Button } from "../components/Button/Button";
+import OuterWindow from "../../components/OuterWindow/OuterWindow";
+import InnerWindow from "../../components/InnerWindow/InnerWindow";
+import { Button } from "../../components/Button/Button";
 import { Icon } from "@iconify/react";
 
 export default function SignIn({ providers }) {
@@ -26,7 +26,14 @@ export default function SignIn({ providers }) {
         <InnerWindow>
           <ProvidersContainer>
             {Object.values(providers).map((provider, index) => (
-              <Button key={provider.name} onClick={() => signIn(provider.id)}>
+              <Button
+                key={provider.name}
+                onClick={() =>
+                  signIn(provider.id, {
+                    callbackUrl: "http://localhost:3000/signin/success",
+                  })
+                }
+              >
                 <Icon icon={providersIcon[index]} color="#6926A9" height="30" />
                 <p>Sign in with {provider.name}</p>
               </Button>
