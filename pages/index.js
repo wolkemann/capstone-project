@@ -1,26 +1,49 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { useSession, getSession, signIn, signOut } from "next-auth/react";
+
 import { Input } from "../components/Input/Input";
 import Navigation from "../components/Navigation/Navigation";
-import Windowr from "../components/Windowr/Windowr";
+import OuterWindow from "../components/OuterWindow/OuterWindow";
+import InnerWindow from "../components/InnerWindow/InnerWindow";
 import { Button } from "../components/Button/Button";
 
 export default function Home() {
+  const { data: session } = useSession();
+
+  console.log(session);
+
   return (
     <main>
-      <Windowr>login</Windowr>
-
-      <Windowr>
-        <Input type="text" id="email" name="email" placeholder="email" />
-        <Input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password"
-        />
-        <Button>login</Button>
-        <Navigation />
-      </Windowr>
+      <OuterWindow>
+        <InnerWindow>
+          <h2>Welcome, {session.user.name}</h2>
+          <Button onClick={() => signOut()}>Sign out</Button>
+        </InnerWindow>
+        <InnerWindow>
+          <Button>Write a Letter</Button>
+        </InnerWindow>
+      </OuterWindow>
+      <Navigation />
     </main>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signin/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
 }

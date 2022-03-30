@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
 import { Button } from "../Button/Button";
 
-export default function WriteMailForm({ handleSubmit }) {
+export default function WriteMailForm({ senderName, handleSubmit }) {
   const [charUsed, setCharUsed] = useState(0);
   const [maxChar, setMaxChar] = useState(0);
 
@@ -29,7 +30,7 @@ export default function WriteMailForm({ handleSubmit }) {
             required
           />
           <SignatureWrapper>
-            <p>{maxChar - charUsed}</p> <p>- Fede</p>
+            <p>{maxChar - charUsed}</p> <p>- {senderName[0]}</p>
           </SignatureWrapper>
         </FormWrapper>
         <Button>Send</Button>
@@ -45,7 +46,7 @@ const FormWrapper = styled.div`
   font-size: 1.2em;
   border: 2px solid var(--window-border-color);
   border-radius: 2px;
-  background-color: var(--window-background-color);
+  background-color: #f6c9f1;
   box-shadow: 0px 0px 8px rgba(0 0 0 / 0.25);
 `;
 
@@ -56,7 +57,7 @@ const MailContent = styled.textarea`
   color: var(--text-color);
   font-size: 1em;
   border-width: 0;
-  background-color: var(--window-background-color);
+  background-color: #f6c9f1;
 
   &:focus {
     outline: 0;
