@@ -17,7 +17,7 @@ export default function Home() {
     <main>
       <OuterWindow>
         <InnerWindow>
-          <h2>Welcome, {session.user.name}</h2>
+          <h2>Welcome, {session.user.nickname}</h2>
           <Button onClick={() => signOut()}>Sign out</Button>
         </InnerWindow>
         <InnerWindow>

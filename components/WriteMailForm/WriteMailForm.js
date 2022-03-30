@@ -30,7 +30,7 @@ export default function WriteMailForm({ senderName, handleSubmit }) {
             required
           />
           <SignatureWrapper>
-            <p>{maxChar - charUsed}</p> <p>- {senderName[0]}</p>
+            <p>{maxChar - charUsed}</p> <p>- {senderName}</p>
           </SignatureWrapper>
         </FormWrapper>
         <Button>Send</Button>
