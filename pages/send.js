@@ -74,7 +74,7 @@ export default function Home() {
       return (
         <main>
           <WriteMailForm
-            senderName={session.user.name}
+            senderName={session.user.nickname}
             handleSubmit={handleSubmit}
           />
           <Navigation />
