@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { getSession, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import useSWR from "swr";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -9,8 +8,14 @@ import OuterWindow from "../../components/OuterWindow/OuterWindow";
 import InnerWindow from "../../components/InnerWindow/InnerWindow";
 import { Button } from "../../components/Button/Button";
 import { Icon } from "@iconify/react";
-import SuccessSmile from "/welcome.png";
-import WhatToDo from "/WhatToDo.png";
+import SuccessSmile from "../../images/welcome.png";
+import WhatToDo from "../../images/WhatToDo.png";
+
+/**
+ *  The success page is shwon when the user registers for the first time.
+ *  It says to the user the nickname assigned by the system and two call to actions,
+ *  namely writing the first letter directly or going to the dashboard.
+ */
 
 export default function SuccessMessage() {
   const { data: session } = useSession();
@@ -45,6 +50,8 @@ export default function SuccessMessage() {
             you.
           </p>
         </InnerWindow>
+      </OuterWindow>
+      <OuterWindow>
         <ImageCenter>
           <Image src={WhatToDo} layout="fixed" width={180} height={180} />
         </ImageCenter>
@@ -70,6 +77,34 @@ export default function SuccessMessage() {
       </OuterWindow>
     </Main>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  if (session) {
+    if (session.user.nickname) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    }
+  } else {
+    return {
+      redirect: {
+        destination: "/signin/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
 }
 
 const ImageCenter = styled.div`
@@ -100,32 +135,3 @@ const Main = styled.main`
     margin-bottom: 0;
   }
 `;
-
-export async function getServerSideProps(context) {
-  const session = await getSession(context);
-
-  if (session) {
-    /* if (session.user.nickname) {
-      return {
-        redirect: {
-          destination: "/",
-          permanent: false,
-        },
-      }; 
-    }
-    */
-  } else {
-    return {
-      redirect: {
-        destination: "/signin/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      session,
-    },
-  };
-}

@@ -6,7 +6,7 @@ export default async function handler(request, response) {
   try {
     connectDb();
 
-    // const session = await getSession({ req: request });
+    const session = await getSession({ req: request });
 
     switch (request.method) {
       case "GET":
@@ -15,12 +15,15 @@ export default async function handler(request, response) {
         break;
 
       case "POST":
-        const createdMail = await Mail.create({
-          ...request.body,
-          userId: "session.user.ssid",
-        });
-        response.status(200).json({ success: true, data: createdMail });
-
+        if (session) {
+          const createdMail = await Mail.create({
+            ...request.body,
+            authorId: session.user.id,
+          });
+          response.status(200).json({ success: true, data: createdMail });
+        } else {
+          response.status(401).json({ error: "Not authenticated" });
+        }
         break;
 
       default:
