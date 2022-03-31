@@ -1,9 +1,7 @@
 import useSWR from "swr";
 import styled from "styled-components";
-
-import { Button } from "../components/Button/Button";
 import Letter from "../components/Letter/Letter";
-import { Icon } from "@iconify/react";
+
 import Navigation from "../components/Navigation/Navigation";
 
 export default function Inbox() {
@@ -15,16 +13,9 @@ export default function Inbox() {
         <MailsWrapper>
           {letters.data.map((letter) => {
             return (
-              <LetterWrapper key={letter._id}>
-                <Letter authorId={letter.authorId}>{letter.text}</Letter>
-                <LetterActions>
-                  <Button>
-                    <Icon icon="ic:round-reply-all" height="40" />
-                    Send a reply
-                  </Button>
-                  <Button></Button>
-                </LetterActions>
-              </LetterWrapper>
+              <Letter key={letter._id} authorId={letter.authorId}>
+                {letter.text}
+              </Letter>
             );
           })}
         </MailsWrapper>
@@ -34,15 +25,7 @@ export default function Inbox() {
   );
 }
 
-const MailsWrapper = styled.section``;
-const LetterWrapper = styled.div``;
-const LetterActions = styled.div`
-  width: 100%;
+const MailsWrapper = styled.section`
   display: flex;
-  & button {
-    display: flex;
-    flex-flow: column wrap;
-    gap: 0.5rem;
-    align-items: center;
-  }
+  flex-flow: column wrap;
 `;
