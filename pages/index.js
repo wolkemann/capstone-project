@@ -11,8 +11,6 @@ import { Button } from "../components/Button/Button";
 export default function Home() {
   const { data: session } = useSession();
 
-  console.log(session);
-
   return (
     <main>
       <OuterWindow>

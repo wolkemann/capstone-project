@@ -1,5 +1,6 @@
 import { getSession } from "next-auth/react";
 import Mail from "../../../schemas/Mail";
+import User from "../../../schemas/User";
 import { connectDb } from "../../../utils/db";
 
 export default async function handler(request, response) {
@@ -16,9 +17,18 @@ export default async function handler(request, response) {
 
       case "POST":
         if (session) {
+          const selectUser = await User.find({ _id: { $ne: session.user.id } });
+          console.log(selectUser.length);
+
+          const assignRecipient =
+            selectUser[Math.floor(Math.random() * selectUser.length) + 0];
+
+          console.log(assignRecipient);
+
           const createdMail = await Mail.create({
             ...request.body,
             authorId: session.user.id,
+            recipientId: assignRecipient._id,
           });
           response.status(200).json({ success: true, data: createdMail });
         } else {
