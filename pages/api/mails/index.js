@@ -11,7 +11,9 @@ export default async function handler(request, response) {
 
     switch (request.method) {
       case "GET":
-        const mails = await Mail.find().sort({ createdAt: -1 }).limit(100);
+        const mails = await Mail.find({ recipientId: session.user.id }).sort({
+          createdAt: -1,
+        });
         response.status(200).json(mails);
         break;
 

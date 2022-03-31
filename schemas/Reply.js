@@ -6,7 +6,7 @@ const mailSchema = new Schema(
     authorId: { type: Schema.Types.ObjectId, ref: "User" },
     recipientId: { type: Schema.Types.ObjectId, ref: "User", default: null },
     reply_to_mail: { type: Schema.Types.ObjectId, ref: "Mail", default: null },
-    reactionEmonji: { type: String },
+    reactionEmoji: { type: String },
   },
   { timestamps: true }
 );
