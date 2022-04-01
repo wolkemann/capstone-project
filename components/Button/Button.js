@@ -8,5 +8,5 @@ export const Button = styled.button`
   background-color: var(--button-background-color);
   border: 2px solid var(--button-border-color);
   border-radius: 5px;
-  box-shadow: 0px 0px 8px rgba(0 0 0 / 0.25);
+  box-shadow: 5px 3px 2px 1px rgba(78, 10, 71, 0.57);
 `;

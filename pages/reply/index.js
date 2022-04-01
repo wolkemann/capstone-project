@@ -13,7 +13,12 @@ export default function Inbox() {
         <MailsWrapper>
           {letters.data.map((letter) => {
             return (
-              <Letter key={letter._id} authorId={letter.authorId}>
+              <Letter
+                key={letter._id}
+                authorId={letter.authorId}
+                replyId={letter._id}
+                showActions={true}
+              >
                 {letter.text}
               </Letter>
             );
@@ -28,4 +33,5 @@ export default function Inbox() {
 const MailsWrapper = styled.section`
   display: flex;
   flex-flow: column wrap;
+  gap: 2rem;
 `;

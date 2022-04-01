@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react";
-import Mail from "../../../schemas/Mail";
+import Reply from "../../../schemas/Reply";
 import User from "../../../schemas/User";
 import { connectDb } from "../../../utils/db";
 
@@ -11,7 +11,7 @@ export default async function handler(request, response) {
 
     switch (request.method) {
       case "GET":
-        const mails = await Mail.find({ recipientId: session.user.id }).sort({
+        const mails = await Reply.find({ recipientId: session.user.id }).sort({
           createdAt: -1,
         });
         response.status(200).json(mails);
@@ -19,18 +19,11 @@ export default async function handler(request, response) {
 
       case "POST":
         if (session) {
-          const selectUser = await User.find({ _id: { $ne: session.user.id } });
-          console.log(selectUser.length);
-
-          const assignRecipient =
-            selectUser[Math.floor(Math.random() * selectUser.length) + 0];
-
-          const createdMail = await Mail.create({
+          const createdReply = await Reply.create({
             ...request.body,
             authorId: session.user.id,
-            recipientId: assignRecipient._id,
           });
-          response.status(200).json({ success: true, data: createdMail });
+          response.status(200).json({ success: true, data: createdReply });
         } else {
           response.status(401).json({ error: "Not authenticated" });
         }

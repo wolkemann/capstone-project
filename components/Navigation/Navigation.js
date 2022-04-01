@@ -62,8 +62,9 @@ const NavWrapper = styled.nav`
   left: 0;
   padding: 1rem;
   background-color: var(--window-background-color);
-  border: 2px solid var(--window-border-color);
-  border-width: 2px 0 0 0;
+  /*border: 2px solid var(--window-border-color);
+  border-width: 3px 0 0 0;*/
+  box-shadow: 0px -5px 2px 1px rgba(78, 10, 71, 0.57);
 `;
 
 const NavList = styled.ul`
