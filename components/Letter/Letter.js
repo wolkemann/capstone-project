@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 import { Button } from "../Button/Button";
 
 export default function Letter({ children, authorId }) {
-  const author = useSWR(`/api/user/${authorId}`);
+  const author = useSWR(`/api/users/${authorId}`);
 
   return (
     <LetterWrapper>

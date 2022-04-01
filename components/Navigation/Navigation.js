@@ -40,14 +40,14 @@ export default function Navigation() {
           </Link>
         </NavItem>
         <NavItem>
-          <Icon icon="ant-design:smile-outlined" color="#877bf4" height="40" />
-        </NavItem>
-        <NavItem>
           <Link href="/">
             <a>
               <Icon icon="bxs:inbox" color="#877bf4" height="40" />
             </a>
           </Link>
+        </NavItem>
+        <NavItem>
+          <Icon icon="ant-design:smile-outlined" color="#877bf4" height="40" />
         </NavItem>
       </NavList>
     </NavWrapper>
