@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
 import { Button } from "../Button/Button";
 
-export default function WriteMailForm({ senderName, handleSubmit }) {
+export default function WriteMailForm({ senderName, handleSubmit, isAReply }) {
   const [charUsed, setCharUsed] = useState(0);
   const [maxChar, setMaxChar] = useState(0);
 
@@ -19,13 +18,15 @@ export default function WriteMailForm({ senderName, handleSubmit }) {
   return (
     <section>
       <form onSubmit={handleSubmit} id="writeMail">
-        <h1>Write Mail</h1>
-        <FormWrapper>
+        <FormWrapper style={isAReply ? { backgroundColor: " #b4e0fa" } : null}>
           <MailContent
+            style={isAReply ? { backgroundColor: "#b4e0fa" } : null}
             onChange={handleOnChange}
             id="mailText"
             name="mailText"
-            placeholder="Write your letter"
+            placeholder={
+              isAReply ? "Write your reply letter" : "Write your letter"
+            }
             maxLength={560}
             required
           />
