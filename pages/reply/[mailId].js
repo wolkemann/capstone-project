@@ -11,11 +11,43 @@ export default function ReplyToMail() {
   const { mailId } = router.query;
   const { data: mailToReply } = useSWR(`/api/mails/${mailId}`);
 
+  async function sendReply(event) {
+    event.preventDefault();
+
+    const response = await fetch("/api/replies", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        text: event.target.mailText.value,
+        recipientId: mailToReply.authorId,
+        MailRepliedId: mailToReply._id,
+      }),
+    });
+
+    const createdReply = await response.json();
+
+    if (response.ok) {
+      const changeMailState = await fetch(`/api/mails/${mailId}`, {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          hasAReply: true,
+        }),
+      });
+      const mailReplied = await changeMailState.json();
+    } else {
+    }
+  }
+
   return (
     <main>
       {mailToReply ? (
         <>
-          <WriteMailForm senderName={session.user.nickname} isAReply={true} />
+          <WriteMailForm
+            handleSubmit={sendReply}
+            senderName={session.user.nickname}
+            isAReply={true}
+          />
           <Letter authorId={mailToReply.authorId}>{mailToReply.text}</Letter>
         </>
       ) : null}
