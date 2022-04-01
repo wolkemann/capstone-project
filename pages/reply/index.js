@@ -33,4 +33,5 @@ export default function Inbox() {
 const MailsWrapper = styled.section`
   display: flex;
   flex-flow: column wrap;
+  gap: 2rem;
 `;

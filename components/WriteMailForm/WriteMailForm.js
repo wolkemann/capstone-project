@@ -16,42 +16,51 @@ export default function WriteMailForm({ senderName, handleSubmit, isAReply }) {
   }
 
   return (
-    <section>
-      <form onSubmit={handleSubmit} id="writeMail">
-        <FormWrapper style={isAReply ? { backgroundColor: " #b4e0fa" } : null}>
-          <MailContent
-            style={isAReply ? { backgroundColor: "#b4e0fa" } : null}
-            onChange={handleOnChange}
-            id="mailText"
-            name="mailText"
-            placeholder={
-              isAReply ? "Write your reply letter" : "Write your letter"
-            }
-            maxLength={560}
-            required
-          />
-          <SignatureWrapper>
-            <p>{maxChar - charUsed}</p>
-            <p>
-              -<strong> {senderName}</strong>
-            </p>
-          </SignatureWrapper>
-        </FormWrapper>
-        <Button>Send</Button>
-      </form>
-    </section>
+    <Form onSubmit={handleSubmit} id="writeMail">
+      <LetterBody style={isAReply ? { backgroundColor: " #b4e0fa" } : null}>
+        <MailContent
+          style={isAReply ? { backgroundColor: "#b4e0fa" } : null}
+          onChange={handleOnChange}
+          id="mailText"
+          name="mailText"
+          placeholder={
+            isAReply ? "Write your reply letter" : "Write your letter"
+          }
+          maxLength={560}
+          required
+        />
+        <SignatureWrapper>
+          <p>{maxChar - charUsed}</p>
+          <p>
+            -<strong> {senderName}</strong>
+          </p>
+        </SignatureWrapper>
+      </LetterBody>
+      <Button>Send</Button>
+    </Form>
   );
 }
 
-const FormWrapper = styled.div`
+const Form = styled.form`
+  display: flex;
+  flex-flow: column wrap;
+  & button {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 1.2em;
+    align-self: flex-end;
+  }
+`;
+
+const LetterBody = styled.div`
   margin: 0.5rem 0;
   padding: 1rem;
   color: var(--text-color);
   font-size: 1.2em;
-  border: 2px solid var(--window-border-color);
+  border: 3px solid var(--window-border-color);
   border-radius: 2px;
   background-color: #f6c9f1;
-  box-shadow: 0px 0px 8px rgba(0 0 0 / 0.25);
+  box-shadow: 5px 5px 2px 1px rgba(78, 10, 71, 0.57);
 `;
 
 const MailContent = styled.textarea`

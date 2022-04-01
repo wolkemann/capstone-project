@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     --text-color: #6926A9;
     --main-background-color: #F6C9F1;
     --window-background-color: #b4e0fa;
-    --window-border-color: #877bf4;
+    --window-border-color: cyan;
     --button-text-color: #6926A9;
     --button-border-color: #584DC0;
     --button-background-color: #b4e0fa;
@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   main {
     margin: 0.5rem;
-    margin-bottom: 77px;
+    margin-bottom: 95px;
   }
 a {
   & button > {
