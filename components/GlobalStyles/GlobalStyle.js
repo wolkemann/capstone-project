@@ -25,6 +25,11 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0.5rem;
     margin-bottom: 77px;
   }
+a {
+  & button > {
+    text-decoration: none;
+  }
+}
   textarea, input[type='button'] {
     font-family: 'Source Sans Pro', sans-serif;
   }

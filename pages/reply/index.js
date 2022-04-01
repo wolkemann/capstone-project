@@ -13,7 +13,12 @@ export default function Inbox() {
         <MailsWrapper>
           {letters.data.map((letter) => {
             return (
-              <Letter key={letter._id} authorId={letter.authorId}>
+              <Letter
+                key={letter._id}
+                authorId={letter.authorId}
+                replyId={letter._id}
+                showActions={true}
+              >
                 {letter.text}
               </Letter>
             );

@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import useSWR from "swr";
+import Link from "next/link";
+
 import { Icon } from "@iconify/react";
 import { Button } from "../Button/Button";
 
-export default function Letter({ children, authorId }) {
+export default function Letter({ children, authorId, replyId, showActions }) {
   const author = useSWR(`/api/users/${authorId}`);
 
   return (
@@ -15,16 +17,22 @@ export default function Letter({ children, authorId }) {
             <SenderSignature>
               - Letter from <strong>{author.data.nickname}</strong>
             </SenderSignature>
-            <LetterActions>
-              <Button>
-                <Icon icon="pixelarticons:reply-all" height="40" />
-                Reply
-              </Button>
-              <Button>
-                <Icon icon="ant-design:cloud-sync-outlined" height="40" />
-                Shuffle Letter
-              </Button>
-            </LetterActions>
+            {showActions ? (
+              <LetterActions>
+                <Link href={`/reply/${replyId}`}>
+                  <a>
+                    <Button>
+                      <Icon icon="pixelarticons:reply-all" height="40" />
+                      Reply
+                    </Button>
+                  </a>
+                </Link>
+                <Button>
+                  <Icon icon="ant-design:cloud-sync-outlined" height="40" />
+                  Shuffle Letter
+                </Button>
+              </LetterActions>
+            ) : null}
           </ActionWrapper>
         </>
       ) : null}
@@ -52,8 +60,12 @@ const LetterActions = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  & a {
+    text-decoration: none;
+  }
   & button {
     display: flex;
+    width: 100%;
     gap: 0.5rem;
     align-items: center;
     justify-content: center;
