@@ -30,7 +30,12 @@ export default function SuccessMessage() {
       const updateUser = await response.json();
       console.log(updateUser);
       setCreatedNickname(updateUser.data.nickname);
+      session.user.nickname = updateUser.data.nickname;
     }
+
+    /* The first time the component is rendered we check if in this session the user has a nickname.
+      if not then it is assigned.
+    */
 
     if (!session.user.nickname) {
       assignNickname();

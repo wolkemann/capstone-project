@@ -39,9 +39,6 @@ export default NextAuth({
         },
       };
     },
-    async signIn({ profile }) {
-      return true;
-    },
   },
   pages: {
     signIn: "/signin/",

@@ -12,7 +12,7 @@ export default function Navigation() {
               <Icon
                 icon="pixelarticons:chart-add"
                 color="#877bf4"
-                height="55"
+                height="40"
               />
             </a>
           </Link>
@@ -23,13 +23,10 @@ export default function Navigation() {
               <Icon
                 icon="pixelarticons:reply-all"
                 color="#877bf4"
-                height="55"
+                height="40"
               />
             </a>
           </Link>
-        </NavItem>
-        <NavItem>
-          <Icon icon="pixelarticons:heart" color="#877bf4" height="55" />
         </NavItem>
         <NavItem>
           <Link href="/">
@@ -37,10 +34,20 @@ export default function Navigation() {
               <Icon
                 icon="ant-design:home-outlined"
                 color="#877bf4"
-                height="55"
+                height="40"
               />
             </a>
           </Link>
+        </NavItem>
+        <NavItem>
+          <Link href="/">
+            <a>
+              <Icon icon="bxs:inbox" color="#877bf4" height="40" />
+            </a>
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Icon icon="ant-design:smile-outlined" color="#877bf4" height="40" />
         </NavItem>
       </NavList>
     </NavWrapper>
@@ -53,7 +60,7 @@ const NavWrapper = styled.nav`
   position: fixed;
   bottom: 0;
   left: 0;
-  padding: 0.5rem;
+  padding: 1rem;
   background-color: var(--window-background-color);
   border: 2px solid var(--window-border-color);
   border-width: 2px 0 0 0;
@@ -64,7 +71,7 @@ const NavList = styled.ul`
   justify-content: space-around;
 `;
 
-const NavItem = styled.ul`
+const NavItem = styled.li`
   list-style: none;
-  padding: 0 1rem;
+  padding: 0 1.1rem;
 `;
