@@ -18,7 +18,7 @@ export default function Navigation() {
           </Link>
         </NavItem>
         <NavItem>
-          <Link href="/inbox/">
+          <Link href="/reply/">
             <a>
               <Icon
                 icon="pixelarticons:reply-all"

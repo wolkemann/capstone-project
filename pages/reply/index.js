@@ -1,8 +1,8 @@
 import useSWR from "swr";
 import styled from "styled-components";
-import Letter from "../components/Letter/Letter";
+import Letter from "../../components/Letter/Letter";
 
-import Navigation from "../components/Navigation/Navigation";
+import Navigation from "../../components/Navigation/Navigation";
 
 export default function Inbox() {
   const letters = useSWR("/api/mails");
