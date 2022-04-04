@@ -24,6 +24,7 @@ export default async function handler(request, response) {
           },
           { returnDocument: "after", runValidators: true }
         );
+        response.status(200).json(modifyMail);
         break;
 
       default:
