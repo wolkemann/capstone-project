@@ -47,8 +47,8 @@ export default function Home() {
           <ResponseWindow>
             <ResponseTitle>Letter sent</ResponseTitle>
             <ResponseMessage>
-              Your letter was successfully sent to another user! Now is time to
-              relax and wait for your reply letter!
+              Your letter was successfully sent to another random user! Now is
+              time to relax and wait for your reply letter!
             </ResponseMessage>
             <Button as="a" href="/">
               Return to Home
