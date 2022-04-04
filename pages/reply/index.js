@@ -11,18 +11,20 @@ export default function Inbox() {
     <main>
       {letters.data ? (
         <MailsWrapper>
-          {letters.data.map((letter) => {
-            return (
-              <Letter
-                key={letter._id}
-                authorId={letter.authorId}
-                replyId={letter._id}
-                showActions={true}
-              >
-                {letter.text}
-              </Letter>
-            );
-          })}
+          {letters.data
+            .filter((letter) => letter.hasAReply === false)
+            .map((letter) => {
+              return (
+                <Letter
+                  key={letter._id}
+                  authorId={letter.authorId}
+                  replyId={letter._id}
+                  showActions={true}
+                >
+                  {letter.text}
+                </Letter>
+              );
+            })}
         </MailsWrapper>
       ) : null}
       <Navigation />
