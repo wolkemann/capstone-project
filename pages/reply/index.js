@@ -4,7 +4,7 @@ import Letter from "../../components/Letter/Letter";
 
 import Navigation from "../../components/Navigation/Navigation";
 
-export default function Inbox() {
+export default function Reply() {
   const letters = useSWR("/api/mails");
 
   return (
