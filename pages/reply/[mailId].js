@@ -27,7 +27,7 @@ export default function ReplyToMail() {
       body: JSON.stringify({
         text: event.target.mailText.value,
         recipientId: mailToReply.authorId,
-        MailRepliedId: mailToReply._id,
+        mailRepliedId: mailToReply._id,
       }),
     });
 

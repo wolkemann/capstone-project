@@ -40,7 +40,7 @@ export default function Navigation() {
           </Link>
         </NavItem>
         <NavItem>
-          <Link href="/">
+          <Link href="/inbox">
             <a>
               <Icon icon="bxs:inbox" color="#877bf4" height="40" />
             </a>

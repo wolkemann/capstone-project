@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     --main-background-color: #F6C9F1;
     --window-background-color: #b4e0fa;
     --window-border-color: cyan;
+    --window-innerborder-color: #6926A9;
     --button-text-color: #6926A9;
     --button-border-color: #584DC0;
     --button-background-color: #b4e0fa;
