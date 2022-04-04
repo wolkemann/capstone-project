@@ -16,11 +16,6 @@ export default async function handler(request, response) {
         response.status(200).json(getMail);
         break;
 
-      default:
-        console.log("request method was neither PATCH or DELETE");
-        response.status(405).json({ error: "Method not allowed" });
-        break;
-
       case "PATCH":
         const modifyMail = await Mail.findByIdAndUpdate(
           mailId,
@@ -29,6 +24,11 @@ export default async function handler(request, response) {
           },
           { returnDocument: "after", runValidators: true }
         );
+        break;
+
+      default:
+        console.log("request method was neither PATCH or DELETE");
+        response.status(405).json({ error: "Method not allowed" });
         break;
     }
   } catch (error) {
