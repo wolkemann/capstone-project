@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useSession, getSession } from "next-auth/react";
+import styled from "styled-components";
 
 import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";
@@ -17,12 +18,12 @@ export default function SingleReply() {
       {reply && letter ? (
         letter.authorId === session.user.id &&
         letter._id === reply.mailRepliedId ? (
-          <>
+          <Wrapper>
             <Letter authorId={letter.authorId}>{letter.text}</Letter>
-            <Letter isAReply={true} authorId={reply.authorId}>
+            <Letter isReplyLetter={true} authorId={reply.authorId}>
               {reply.text}
             </Letter>
-          </>
+          </Wrapper>
         ) : (
           <p>
             The user that is trying to watch this conversation is not the author
@@ -52,3 +53,9 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+const Wrapper = styled.section`
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+`;

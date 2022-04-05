@@ -3,7 +3,11 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { Button } from "../Button/Button";
 
-export default function WriteMailForm({ senderName, handleSubmit, isAReply }) {
+export default function WriteMailForm({
+  senderName,
+  handleSubmit,
+  isReplyLetter,
+}) {
   const [charUsed, setCharUsed] = useState(0);
   const [maxChar, setMaxChar] = useState(0);
 
@@ -17,7 +21,9 @@ export default function WriteMailForm({ senderName, handleSubmit, isAReply }) {
 
   return (
     <Form onSubmit={handleSubmit} id="writeMail">
-      <LetterBody style={isAReply ? { backgroundColor: " #b4e0fa" } : null}>
+      <LetterBody
+        style={isReplyLetter ? { backgroundColor: " #b4e0fa" } : null}
+      >
         <MailContent
           style={isAReply ? { backgroundColor: "#b4e0fa" } : null}
           onChange={handleOnChange}
