@@ -21,9 +21,8 @@ export default function StickersWindow() {
         <WarningWrapper>
           <Image src={Attention} width={250} height={250} priority={true} />
           <WarningText>
-            When you send a Sticker, the corrispondence between you and your
-            misterious helper is concluded and it will be delete from your
-            inbox.
+            When you send a Sticker, the correspondence between you and your
+            misterious helper is concluded and will be delete from your inbox.
           </WarningText>
         </WarningWrapper>
       </OuterWindow>
