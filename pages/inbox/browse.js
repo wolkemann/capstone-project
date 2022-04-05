@@ -4,6 +4,7 @@ import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 
+import StickersWindow from "../../components/StickersWindow/StickersWindow";
 import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";
 import { Button } from "../../components/Button/Button";
@@ -31,6 +32,8 @@ export default function SingleReply() {
               <br />
               Send a Sticker!
             </Button>
+
+            <StickersWindow />
           </Wrapper>
         ) : (
           <p>
@@ -39,6 +42,7 @@ export default function SingleReply() {
           </p>
         )
       ) : null}
+
       <Navigation />
     </main>
   );

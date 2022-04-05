@@ -2,7 +2,6 @@ import Link from "next/link";
 import styled from "styled-components";
 import { useSession, getSession, signIn, signOut } from "next-auth/react";
 
-import { Input } from "../components/Input/Input";
 import Navigation from "../components/Navigation/Navigation";
 import OuterWindow from "../components/OuterWindow/OuterWindow";
 import InnerWindow from "../components/InnerWindow/InnerWindow";
