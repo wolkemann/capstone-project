@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import styled from "styled-components";
 import useSWR from "swr";
 import Link from "next/link";
@@ -5,17 +6,34 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { Button } from "../Button/Button";
 
-export default function Letter({ children, authorId, replyId, showActions }) {
+export default function Letter({
+  children,
+  isReplyLetter,
+  authorId,
+  replyId,
+  showActions,
+}) {
+  const { data: session } = useSession();
   const author = useSWR(`/api/users/${authorId}`);
 
   return (
-    <LetterWrapper>
+    <LetterWrapper
+      style={isReplyLetter ? { backgroundColor: "#b4e0fa" } : null}
+    >
       {author.data ? (
         <>
-          <p>{children}</p>
+          <LetterContent style={showActions ? { minHeight: "63vh" } : null}>
+            {children}
+          </LetterContent>
           <ActionWrapper>
             <SenderSignature>
-              - Letter from <strong>{author.data.nickname}</strong>
+              {author.data._id === session.user.id ? (
+                <>- Your Letter</>
+              ) : (
+                <>
+                  - Letter from <strong>{author.data.nickname}</strong>
+                </>
+              )}
             </SenderSignature>
             {showActions ? (
               <LetterActions>
@@ -44,7 +62,7 @@ const LetterWrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
-  min-height: 80vh;
+
   padding: 1rem;
   color: var(--text-color);
   font-size: 1.2em;
@@ -52,6 +70,10 @@ const LetterWrapper = styled.div`
   border-radius: 2px;
   background-color: #f6c9f1;
   box-shadow: 5px 5px 2px 1px rgba(78, 10, 71, 0.57);
+`;
+
+const LetterContent = styled.p`
+  min-height: 61vh;
 `;
 
 const LetterActions = styled.div`

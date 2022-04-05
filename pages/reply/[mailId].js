@@ -91,7 +91,7 @@ export default function ReplyToMail() {
               <WriteMailForm
                 handleSubmit={sendReply}
                 senderName={session.user.nickname}
-                isAReply={true}
+                isReplyLetter={true}
               />
               <article>
                 <Label>Original Letter</Label>
