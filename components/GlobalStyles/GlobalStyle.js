@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     color: var(--text-color);
   }
   main {
-    margin: 0.5rem;
+    margin: 0.5rem 1rem;
     margin-bottom: 95px;
   }
 a {

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
+import { Icon } from "@iconify/react";
+
 import { Button } from "../Button/Button";
 
 export default function WriteMailForm({
@@ -25,12 +27,12 @@ export default function WriteMailForm({
         style={isReplyLetter ? { backgroundColor: " #b4e0fa" } : null}
       >
         <MailContent
-          style={isAReply ? { backgroundColor: "#b4e0fa" } : null}
+          style={isReplyLetter ? { backgroundColor: "#b4e0fa" } : null}
           onChange={handleOnChange}
           id="mailText"
           name="mailText"
           placeholder={
-            isAReply ? "Write your reply letter" : "Write your letter"
+            isReplyLetter ? "Write your reply letter" : "Write your letter"
           }
           maxLength={560}
           required
@@ -42,7 +44,10 @@ export default function WriteMailForm({
           </p>
         </SignatureWrapper>
       </LetterBody>
-      <Button>Send</Button>
+      <Button>
+        <Icon icon="bi:send" height="40" />
+        {isReplyLetter ? "Send your response Letter" : "Send your Letter"}
+      </Button>
     </Form>
   );
 }
@@ -51,15 +56,18 @@ const Form = styled.form`
   display: flex;
   flex-flow: column wrap;
   & button {
-    padding-left: 2rem;
-    padding-right: 2rem;
     font-size: 1.2em;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
     align-self: flex-end;
   }
 `;
 
 const LetterBody = styled.div`
-  margin: 0.5rem 0;
+  margin: 1rem 0;
+  margin-top: 0;
   padding: 1rem;
   color: var(--text-color);
   font-size: 1.2em;

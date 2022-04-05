@@ -8,11 +8,11 @@ import OuterWindow from "../../components/OuterWindow/OuterWindow";
 import InnerWindow from "../../components/InnerWindow/InnerWindow";
 import { Button } from "../../components/Button/Button";
 import { Icon } from "@iconify/react";
-import SuccessSmile from "../../images/welcome.png";
-import WhatToDo from "../../images/WhatToDo.png";
+import SuccessSmile from "../../public/images/welcome.png";
+import WhatToDo from "../../public/images/WhatToDo.png";
 
 /**
- *  The success page is shwon when the user registers for the first time.
+ *  The success page is shown when the user registers for the first time.
  *  It says to the user the nickname assigned by the system and two call to actions,
  *  namely writing the first letter directly or going to the dashboard.
  */
