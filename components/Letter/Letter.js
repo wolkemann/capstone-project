@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import styled from "styled-components";
 import useSWR from "swr";
 import Link from "next/link";
@@ -5,17 +6,30 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { Button } from "../Button/Button";
 
-export default function Letter({ children, authorId, replyId, showActions }) {
+export default function Letter({
+  children,
+  isAReply,
+  authorId,
+  replyId,
+  showActions,
+}) {
+  const { data: session } = useSession();
   const author = useSWR(`/api/users/${authorId}`);
 
   return (
-    <LetterWrapper>
+    <LetterWrapper style={isAReply ? { backgroundColor: " #b4e0fa" } : null}>
       {author.data ? (
         <>
           <p>{children}</p>
           <ActionWrapper>
             <SenderSignature>
-              - Letter from <strong>{author.data.nickname}</strong>
+              {author.data._id === session.user.id ? (
+                <>- Your Letter</>
+              ) : (
+                <>
+                  - Letter from <strong>{author.data.nickname}</strong>
+                </>
+              )}
             </SenderSignature>
             {showActions ? (
               <LetterActions>

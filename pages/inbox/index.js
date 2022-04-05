@@ -1,4 +1,5 @@
 import { useSession, getSession } from "next-auth/react";
+import Link from "next/link";
 import useSWR from "swr";
 import styled from "styled-components";
 
@@ -12,9 +13,19 @@ export default function Inbox() {
     <main>
       {replies
         ? replies.map((reply) => {
-            return <InboxItem key={reply._id} sender={reply.authorId} />;
+            return (
+              <Link
+                href={`/inbox/browse?replyid=${reply._id}&letterid=${reply.mailRepliedId}`}
+                key={reply._id}
+              >
+                <a>
+                  <InboxItem sender={reply.authorId} />
+                </a>
+              </Link>
+            );
           })
         : null}
+
       <Navigation />
     </main>
   );
@@ -36,3 +47,8 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+const LetterWrapper = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+`;
