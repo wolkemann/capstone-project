@@ -19,11 +19,11 @@ export default function StickersWindow() {
 
   /*
 
-  handleOnClickSticker handles the stickers selection 
+  handleOnStickerClick handles the stickers selection 
   
   */
 
-  function handleOnClickSticker(stickerIndex) {
+  function handleOnStickerClick(stickerIndex) {
     const updatedStickersList = stickersList.map((sticker, index) => {
       /* 
       if the sticker index is the same from the one called in the function
@@ -68,8 +68,8 @@ export default function StickersWindow() {
                   key={index}
                   image={sticker.url}
                   isSelected={sticker.isSelected}
-                  onClickSticker={() => {
-                    handleOnClickSticker(index);
+                  onStickerClick={() => {
+                    handleOnStickerClick(index);
                   }}
                 />
               );
