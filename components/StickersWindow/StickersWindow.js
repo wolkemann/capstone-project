@@ -1,19 +1,28 @@
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 
+import { UserContext } from "../../pages/inbox/browse";
 import OuterWindow from "../../components/OuterWindow/OuterWindow";
 import InnerWindow from "../../components/InnerWindow/InnerWindow";
 import PopupTitle from "../PopupTitle/PopupTitle";
 import Attention from "../../public/images/attention.svg";
 
 export default function StickersWindow() {
+  const { showPopup, setShowPopup } = useContext(UserContext);
   return (
-    <PopupWindow>
+    <PopupWindow style={showPopup ? { display: "block" } : { display: "none" }}>
       <OuterWindow>
         <PopupTitle>
           <strong>Choose a Sticker.exe </strong>
-          <Icon icon="ph:x-square-bold" height="30" />
+          <Icon
+            icon="ph:x-square-bold"
+            height="30"
+            onClick={() => {
+              setShowPopup(false);
+            }}
+          />
         </PopupTitle>
         <InnerWindow>
           <StickersContainer></StickersContainer>
@@ -22,7 +31,7 @@ export default function StickersWindow() {
           <Image src={Attention} width={250} height={250} priority={true} />
           <WarningText>
             When you send a Sticker, the correspondence between you and your
-            misterious helper is concluded and will be delete from your inbox.
+            misterious helper is concluded and will be deleted from your inbox.
           </WarningText>
         </WarningWrapper>
       </OuterWindow>
