@@ -6,7 +6,7 @@ import Image from "next/image";
 import { StickersArray } from "../../utils/stickers";
 import { UserContext } from "../../pages/inbox/browse";
 import OuterWindow from "../../components/OuterWindow/OuterWindow";
-import InnerWindow from "../../components/InnerWindow/InnerWindow";
+import { InnerWindow } from "../../components/InnerWindow/InnerWindow";
 import PopupTitle from "../PopupTitle/PopupTitle";
 import { Button } from "../Button/Button";
 import Attention from "../../public/images/attention.svg";
@@ -51,7 +51,7 @@ export default function StickersWindow() {
     <PopupWindow style={showPopup ? { display: "block" } : { display: "none" }}>
       <OuterWindow>
         <PopupTitle>
-          <strong>Choose a Sticker.exe </strong>
+          <strong>Stickers/{selectedSticker} </strong>
           <Icon
             icon="ph:x-square-bold"
             height="30"
@@ -60,7 +60,7 @@ export default function StickersWindow() {
             }}
           />
         </PopupTitle>
-        <InnerWindow>
+        <InnerWindow as="section">
           <StickersContainer>
             {stickersList.map((sticker, index) => {
               return (
@@ -75,18 +75,21 @@ export default function StickersWindow() {
               );
             })}
           </StickersContainer>
-          {selectedSticker ? <Button>Send sticker</Button> : null}
         </InnerWindow>
-        {selectedSticker ? (
-          <WarningWrapper>
-            <Image src={Attention} width={250} height={250} priority={true} />
 
-            <WarningText>
-              When you send a Sticker, the correspondence between you and your
-              misterious helper is concluded and will be deleted from your
-              inbox.
-            </WarningText>
-          </WarningWrapper>
+        {selectedSticker ? (
+          <>
+            <WarningWrapper>
+              <Image src={Attention} width={250} height={250} priority={true} />
+
+              <WarningText>
+                When you send a Sticker, the correspondence between you and your
+                misterious helper is concluded and will be deleted from your
+                inbox.
+              </WarningText>
+            </WarningWrapper>
+            <Button>Send Sticker</Button>
+          </>
         ) : null}
       </OuterWindow>
     </PopupWindow>
@@ -98,10 +101,17 @@ const PopupWindow = styled.aside`
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
+  & section {
+    padding: 0 0 0 0.5rem;
+  }
+  & button {
+    margin: 0.5rem 0.5rem;
+  }
 `;
 
 const StickersContainer = styled.aside`
-  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-right: 1rem;
   padding-bottom: 0.5rem;
   display: flex;
   flex-flow: row wrap;
@@ -116,6 +126,9 @@ const WarningWrapper = styled.div`
   display: flex;
   gap: 1rem;
   padding: 0.5rem;
+  & button {
+    border-radius: 999px;
+  }
 `;
 
 const WarningText = styled.p`

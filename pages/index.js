@@ -4,7 +4,7 @@ import { useSession, getSession, signIn, signOut } from "next-auth/react";
 
 import Navigation from "../components/Navigation/Navigation";
 import OuterWindow from "../components/OuterWindow/OuterWindow";
-import InnerWindow from "../components/InnerWindow/InnerWindow";
+import { InnerWindow } from "../components/InnerWindow/InnerWindow";
 import { Button } from "../components/Button/Button";
 
 export default function Home() {
