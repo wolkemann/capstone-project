@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import { useState, createContext } from "react";
 import { useRouter } from "next/router";
 import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
@@ -9,7 +10,10 @@ import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";
 import { Button } from "../../components/Button/Button";
 
+export const UserContext = createContext();
+
 export default function SingleReply() {
+  const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
   const { replyid, letterid } = router.query;
@@ -18,32 +22,38 @@ export default function SingleReply() {
 
   return (
     <main>
-      {reply && letter ? (
-        letter.authorId === session.user.id &&
-        letter._id === reply.mailRepliedId ? (
-          <Wrapper>
-            <Letter authorId={letter.authorId}>{letter.text}</Letter>
-            <Letter isReplyLetter={true} authorId={reply.authorId}>
-              {reply.text}
-            </Letter>
-            <Button>
-              <Icon icon="fluent:sticker-20-regular" height="50" />
-              Do you like this letter?
-              <br />
-              Send a Sticker!
-            </Button>
+      <UserContext.Provider value={{ showPopup, setShowPopup }}>
+        {reply && letter ? (
+          letter.authorId === session.user.id &&
+          letter._id === reply.mailRepliedId ? (
+            <Wrapper>
+              <Letter authorId={letter.authorId}>{letter.text}</Letter>
+              <Letter isReplyLetter={true} authorId={reply.authorId}>
+                {reply.text}
+              </Letter>
+              <Button
+                onClick={() => {
+                  setShowPopup(true);
+                }}
+              >
+                <Icon icon="fluent:sticker-20-regular" height="50" />
+                Do you like this letter?
+                <br />
+                Send a Sticker!
+              </Button>
 
-            <StickersWindow />
-          </Wrapper>
-        ) : (
-          <p>
-            The user that is trying to watch this conversation is not the author
-            of the letter
-          </p>
-        )
-      ) : null}
+              <StickersWindow />
+            </Wrapper>
+          ) : (
+            <p>
+              The user that is trying to watch this conversation is not the
+              author of the letter
+            </p>
+          )
+        ) : null}
 
-      <Navigation />
+        <Navigation />
+      </UserContext.Provider>
     </main>
   );
 }
