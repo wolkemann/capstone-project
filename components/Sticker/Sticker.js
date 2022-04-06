@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function Sticker({ image, isSelected, onClickSticker }) {
+export default function Sticker({ image, isSelected, onStickerClick }) {
   return (
     <StickerWrapper
-      onClick={onClickSticker}
+      onClick={onStickerClick}
       style={
         isSelected
           ? { backgroundColor: "red" }
