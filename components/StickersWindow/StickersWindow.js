@@ -77,13 +77,17 @@ export default function StickersWindow() {
           </StickersContainer>
           {selectedSticker ? <Button>Send sticker</Button> : null}
         </InnerWindow>
-        <WarningWrapper>
-          <Image src={Attention} width={250} height={250} priority={true} />
-          <WarningText>
-            When you send a Sticker, the correspondence between you and your
-            misterious helper is concluded and will be deleted from your inbox.
-          </WarningText>
-        </WarningWrapper>
+        {selectedSticker ? (
+          <WarningWrapper>
+            <Image src={Attention} width={250} height={250} priority={true} />
+
+            <WarningText>
+              When you send a Sticker, the correspondence between you and your
+              misterious helper is concluded and will be deleted from your
+              inbox.
+            </WarningText>
+          </WarningWrapper>
+        ) : null}
       </OuterWindow>
     </PopupWindow>
   );

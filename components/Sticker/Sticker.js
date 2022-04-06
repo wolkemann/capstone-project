@@ -7,8 +7,8 @@ export default function Sticker({ image, isSelected, onStickerClick }) {
       onClick={onStickerClick}
       style={
         isSelected
-          ? { backgroundColor: "red" }
-          : { backgroundColor: "var(--window-background-color)" }
+          ? { borderColor: "crimson" }
+          : { borderColor: "var(--button-border-color)" }
       }
     >
       <img src={`/stickers/${image}`} />
