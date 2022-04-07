@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import OuterWindow from "../../components/OuterWindow/OuterWindow";
-import InnerWindow from "../../components/InnerWindow/InnerWindow";
+import { InnerWindow } from "../../components/InnerWindow/InnerWindow";
 import { Button } from "../../components/Button/Button";
 import { Icon } from "@iconify/react";
 import SuccessSmile from "../../public/images/welcome.png";

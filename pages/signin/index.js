@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import styled from "styled-components";
 import OuterWindow from "../../components/OuterWindow/OuterWindow";
-import InnerWindow from "../../components/InnerWindow/InnerWindow";
+import { InnerWindow } from "../../components/InnerWindow/InnerWindow";
 import { Button } from "../../components/Button/Button";
 import { Icon } from "@iconify/react";
 
