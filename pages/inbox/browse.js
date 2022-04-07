@@ -28,14 +28,11 @@ export default function SingleReply() {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        '$push': { 'stickers': selectedSticker },
+        $push: {
+          stickers: { url: selectedSticker, sender: session.user.nickname },
+        },
       }),
     });
-    
-    // if you need the user afterwards:
-    // const updatedUser = updatedUserResponse.json();
-
-    const updatedOk = await updateEmojiCollection.json();
   }
 
   return (
