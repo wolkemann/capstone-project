@@ -24,20 +24,16 @@ export default function SingleReply() {
   const { data: letter } = useSWR(`/api/mails/${letterid}`);
 
   async function handleOnSendSticker() {
-    const fetchReciever = await fetch(`/api/users/${reply.authorId}`, {
-      method: "GET",
-      headers: { "content-type": "application/json" },
-      //body: JSON.stringify({ emojis: selectedSticker }),
-    });
-    const Reciever = await fetchReciever.json();
-
-    const updateEmojiCollection = await fetch(`/api/users/${reply.authorId}`, {
+    const updatedUserResponse = await fetch(`/api/users/${reply.authorId}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        stickers: [...Reciever.stickers, selectedSticker],
+        '$push': { 'stickers': selectedSticker },
       }),
     });
+    
+    // if you need the user afterwards:
+    // const updatedUser = updatedUserResponse.json();
 
     const updatedOk = await updateEmojiCollection.json();
   }
