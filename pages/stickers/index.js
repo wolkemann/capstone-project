@@ -1,5 +1,6 @@
-import { getSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
+import useSWR from "swr";
 
 import { StickersArray } from "../../utils/stickers";
 import OuterWindow from "../../components/OuterWindow/OuterWindow";
@@ -9,14 +10,25 @@ import Navigation from "../../components/Navigation/Navigation";
 import StickerCounter from "../../components/StickerCounter/StickerCounter";
 
 export default function StickersPage() {
+  const { data: session } = useSession();
+  const { data: user } = useSWR(`/api/users/${session.user.id}`);
+
   return (
     <main>
       <OuterWindow>
         <PopupTitle>Stickers Collection</PopupTitle>
         <ContentWindow>
-          {StickersArray.map((sticker, index) => {
-            return <StickerCounter key={index} stickerToCount={sticker.url} />;
-          })}
+          {user
+            ? StickersArray.map((sticker, index) => {
+                return (
+                  <StickerCounter
+                    key={index}
+                    stickerToCount={sticker.url}
+                    stickers={user.stickers}
+                  />
+                );
+              })
+            : null}
         </ContentWindow>
       </OuterWindow>
       <Navigation />

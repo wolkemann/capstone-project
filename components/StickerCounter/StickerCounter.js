@@ -5,25 +5,16 @@ import useSWR from "swr";
 
 import Sticker from "../../components/Sticker/Sticker";
 
-export default function StickerCounter({ stickerToCount }) {
+export default function StickerCounter({ stickerToCount, stickers }) {
   const [stickerCount, setStickerCount] = useState(0);
   const { data: session } = useSession();
 
   useEffect(() => {
-    async function getCounter() {
-      const fetchCount = await fetch(`/api/users/${session.user.id}`, {
-        method: "GET",
-        headers: { "content-type": "application/json" },
-      });
-
-      const { stickers: stickers } = await fetchCount.json();
-      setStickerCount(
-        stickers.filter((sticker) => {
-          return sticker.url === stickerToCount;
-        }).length
-      );
-    }
-    getCounter();
+    setStickerCount(
+      stickers.filter((sticker) => {
+        return sticker.url === stickerToCount;
+      }).length
+    );
   }, [stickerCount]);
 
   return (
