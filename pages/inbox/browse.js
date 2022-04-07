@@ -14,15 +14,38 @@ export const UserContext = createContext();
 
 export default function SingleReply() {
   const [showPopup, setShowPopup] = useState(false);
+  const [submitState, setSubmitState] = useState();
+  const [selectedSticker, setSelectedSticker] = useState();
+
   const router = useRouter();
   const { data: session } = useSession();
   const { replyid, letterid } = router.query;
   const { data: reply } = useSWR(`/api/replies/${replyid}`);
   const { data: letter } = useSWR(`/api/mails/${letterid}`);
 
+  async function handleOnSendSticker() {
+    const fetchReciver = await fetch(`/api/users/${reply.authorId}`, {
+      method: "GET",
+      headers: { "content-type": "application/json" },
+      //body: JSON.stringify({ emojis: selectedSticker }),
+    });
+    const Reciver = await fetchReciver.json();
+    console.log(Reciver.emojis);
+
+    const updateEmojiCollection = await fetch(`/api/users/${reply.authorId}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ emojis: [...Reciver.emojis, selectedSticker] }),
+    });
+
+    const updatedOk = await updateEmojiCollection.json();
+  }
+
   return (
     <main>
-      <UserContext.Provider value={{ showPopup, setShowPopup }}>
+      <UserContext.Provider
+        value={{ showPopup, setShowPopup, selectedSticker, setSelectedSticker }}
+      >
         {reply && letter ? (
           letter.authorId === session.user.id &&
           letter._id === reply.mailRepliedId ? (
@@ -42,7 +65,7 @@ export default function SingleReply() {
                 Send a Sticker!
               </Button>
 
-              <StickersWindow />
+              <StickersWindow onSendSticker={handleOnSendSticker} />
             </Wrapper>
           ) : (
             <p>
@@ -68,7 +91,6 @@ export async function getServerSideProps(context) {
       },
     };
   }
-
   return {
     props: {
       session,

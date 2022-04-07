@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 
-import { StickersArray } from "../../utils/stickers";
 import { UserContext } from "../../pages/inbox/browse";
+import { StickersArray } from "../../utils/stickers";
 import OuterWindow from "../../components/OuterWindow/OuterWindow";
 import { InnerWindow } from "../../components/InnerWindow/InnerWindow";
 import PopupTitle from "../PopupTitle/PopupTitle";
@@ -12,17 +12,16 @@ import { Button } from "../Button/Button";
 import Attention from "../../public/images/attention.svg";
 import Sticker from "../Sticker/Sticker";
 
-export default function StickersWindow() {
-  const { showPopup, setShowPopup } = useContext(UserContext);
+export default function StickersWindow({ onSendSticker }) {
+  const { showPopup, setShowPopup, selectedSticker, setSelectedSticker } =
+    useContext(UserContext);
   const [stickersList, setStickersList] = useState(StickersArray);
-  const [selectedSticker, setSelectedSticker] = useState();
 
   /*
 
   handleOnStickerClick handles the stickers selection 
   
   */
-
   function handleOnStickerClick(stickerIndex) {
     const updatedStickersList = stickersList.map((sticker, index) => {
       /* 
@@ -81,14 +80,13 @@ export default function StickersWindow() {
           <>
             <WarningWrapper>
               <Image src={Attention} width={250} height={250} priority={true} />
-
               <WarningText>
                 When you send a Sticker, the correspondence between you and your
                 misterious helper is concluded and will be deleted from your
                 inbox.
               </WarningText>
             </WarningWrapper>
-            <Button>Send Sticker</Button>
+            <Button onClick={onSendSticker}>Send Sticker</Button>
           </>
         ) : null}
       </OuterWindow>
