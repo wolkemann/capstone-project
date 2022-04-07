@@ -35,7 +35,10 @@ export default function SingleReply() {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        stickers: [...Reciever.stickers, selectedSticker],
+        stickers: [
+          { url: selectedSticker, sender: session.user.nickname },
+          ...Reciever.stickers,
+        ],
       }),
     });
 
