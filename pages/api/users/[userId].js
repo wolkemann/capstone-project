@@ -7,13 +7,21 @@ export default async function handler(request, response) {
 
   try {
     connectDb();
-
+    const getUser = await User.findById(userId).exec();
     const session = await getSession({ req: request });
 
     switch (request.method) {
       case "GET":
-        const getUser = await User.findById(userId).exec();
         response.status(200).json(getUser);
+        break;
+
+      case "PATCH":
+        const updatedUser = await User.findByIdAndUpdate(
+          userId,
+          request.body,
+          { returnDocument: "after", runValidators: true }
+        );
+        response.status(200).json(updatedUser);
         break;
 
       default:
