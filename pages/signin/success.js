@@ -8,8 +8,6 @@ import OuterWindow from "../../components/OuterWindow/OuterWindow";
 import { InnerWindow } from "../../components/InnerWindow/InnerWindow";
 import { Button } from "../../components/Button/Button";
 import { Icon } from "@iconify/react";
-import SuccessSmile from "../../public/images/welcome.png";
-import WhatToDo from "../../public/images/WhatToDo.png";
 
 /**
  *  The success page is shown when the user registers for the first time.
@@ -46,7 +44,12 @@ export default function SuccessMessage() {
     <Main>
       <OuterWindow>
         <ImageCenter>
-          <Image src={SuccessSmile} layout="fixed" width={180} height={180} />
+          <Image
+            src="../../public/images/welcome.png"
+            layout="fixed"
+            width={180}
+            height={180}
+          />
         </ImageCenter>
         <InnerWindow>
           <h2>Welcome to Gentle Letters!</h2>
@@ -58,7 +61,12 @@ export default function SuccessMessage() {
       </OuterWindow>
       <OuterWindow>
         <ImageCenter>
-          <Image src={WhatToDo} layout="fixed" width={180} height={180} />
+          <Image
+            src="../../public/images/WhatToDo.png"
+            layout="fixed"
+            width={180}
+            height={180}
+          />
         </ImageCenter>
         <InnerWindow>
           <h2>What to do now?</h2>
