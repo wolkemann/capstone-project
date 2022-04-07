@@ -18,9 +18,8 @@ export default async function handler(request, response) {
       case "PATCH":
         const updatedUser = await User.findByIdAndUpdate(
           userId,
-          {
-            ...request.body,
-          },
+          request.body,
+
           { returnDocument: "after", runValidators: true }
         );
         response.status(200).json(updatedUser);
