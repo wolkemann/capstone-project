@@ -58,5 +58,6 @@ export async function getServerSideProps(context) {
 const ContentWindow = styled(InnerWindow)`
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  gap: 1rem;
+  justify-content: space-between;
 `;
