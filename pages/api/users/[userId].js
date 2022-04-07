@@ -19,7 +19,6 @@ export default async function handler(request, response) {
         const updatedUser = await User.findByIdAndUpdate(
           userId,
           request.body,
-
           { returnDocument: "after", runValidators: true }
         );
         response.status(200).json(updatedUser);
