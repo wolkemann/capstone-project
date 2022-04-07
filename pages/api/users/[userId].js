@@ -16,11 +16,10 @@ export default async function handler(request, response) {
         break;
 
       case "PATCH":
-        const updatedUser = await User.findByIdAndUpdate(
-          userId,
-          request.body,
-          { returnDocument: "after", runValidators: true }
-        );
+        const updatedUser = await User.findByIdAndUpdate(userId, request.body, {
+          returnDocument: "after",
+          runValidators: true,
+        });
         response.status(200).json(updatedUser);
         break;
 

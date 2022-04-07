@@ -47,7 +47,15 @@ export default function Navigation() {
           </Link>
         </NavItem>
         <NavItem>
-          <Icon icon="ant-design:smile-outlined" color="#877bf4" height="40" />
+          <Link href="/stickers">
+            <a>
+              <Icon
+                icon="ant-design:smile-outlined"
+                color="#877bf4"
+                height="40"
+              />
+            </a>
+          </Link>
         </NavItem>
       </NavList>
     </NavWrapper>

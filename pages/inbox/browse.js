@@ -18,8 +18,8 @@ export default function SingleReply() {
   const [selectedSticker, setSelectedSticker] = useState();
 
   const router = useRouter();
-  const { data: session } = useSession();
   const { replyid, letterid } = router.query;
+  const { data: session } = useSession();
   const { data: reply } = useSWR(`/api/replies/${replyid}`);
   const { data: letter } = useSWR(`/api/mails/${letterid}`);
 
