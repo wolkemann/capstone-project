@@ -17,14 +17,14 @@ export default async function handler(request, response) {
         break;
 
       case "PATCH":
-        const modifyMail = await Mail.findByIdAndUpdate(
-          mailId,
+        const modifyReply = await Reply.findByIdAndUpdate(
+          replyId,
           {
             $set: request.body,
           },
           { returnDocument: "after", runValidators: true }
         );
-        response.status(200).json(modifyMail);
+        response.status(200).json(modifyReply);
         break;
 
       default:
