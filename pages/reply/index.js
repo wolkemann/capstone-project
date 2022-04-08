@@ -1,7 +1,16 @@
+/* ==========================
+
+Importing Libraries
+
+============================*/
 import Head from "next/head";
 import useSWR from "swr";
 import styled from "styled-components";
+/* ==========================
 
+Importing App Components
+
+============================*/
 import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";
 

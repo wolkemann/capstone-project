@@ -1,8 +1,17 @@
+/* ==========================
+
+Importing Libraries
+
+============================*/
 import { useSession, getSession } from "next-auth/react";
 import Link from "next/link";
 import useSWR from "swr";
 import styled from "styled-components";
+/* ==========================
 
+Importing App Components
+
+============================*/
 import Navigation from "../../components/Navigation/Navigation";
 import InboxItem from "../../components/InboxItem/InboxItem";
 

@@ -1,8 +1,17 @@
+/* ==========================
+
+Importing Libraries
+
+============================*/
 import Link from "next/link";
 import Head from "next/head";
 import styled from "styled-components";
 import { useSession, getSession, signIn, signOut } from "next-auth/react";
+/* ==========================
 
+Importing App Components
+
+============================*/
 import Navigation from "../components/Navigation/Navigation";
 import OuterWindow from "../components/OuterWindow/OuterWindow";
 import { InnerWindow } from "../components/InnerWindow/InnerWindow";

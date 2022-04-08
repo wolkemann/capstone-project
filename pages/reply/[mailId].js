@@ -1,9 +1,18 @@
+/* ==========================
+
+Importing Libraries
+
+============================*/
 import { useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
+/* ==========================
 
+Importing App Components
+
+============================*/
 import WriteMailForm from "../../components/WriteMailForm/WriteMailForm";
 import Navigation from "../../components/Navigation/Navigation";
 import Letter from "../../components/Letter/Letter";
