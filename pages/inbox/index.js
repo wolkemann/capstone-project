@@ -11,8 +11,11 @@ export default function Inbox() {
 
   return (
     <main>
-      {replies
-        ? replies.map((reply) => {
+      {replies ? (
+        replies.filter((reply) => {
+          return reply.reactionEmoji === false;
+        }).length ? (
+          replies.map((reply) => {
             return (
               <Link
                 href={`/inbox/browse?replyid=${reply._id}&letterid=${reply.mailRepliedId}`}
@@ -24,7 +27,10 @@ export default function Inbox() {
               </Link>
             );
           })
-        : null}
+        ) : (
+          <p>No Replies</p>
+        )
+      ) : null}
 
       <Navigation />
     </main>

@@ -34,18 +34,31 @@ export default function SingleReply() {
         },
       }),
     });
-    const response = updatedUserResponse.json();
-    if (response.ok) {
-      setSubmitState("success");
+    //const response = await updatedUserResponse.json();
+    if (updatedUserResponse.ok) {
+      console.log("response was ok");
+      const updateReplyResponse = await fetch(`/api/replies/${reply._id}`, {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          reactionEmoji: true,
+        }),
+      });
+
+      console.log(updateReplyResponse);
+      //const returnedReply = await updateReply.json();
+      if (updateReplyResponse.ok) {
+        setSubmitState("success");
+      }
     }
   }
 
   switch (submitState) {
     case "pending":
-      return <main></main>;
+      return <main>pending</main>;
 
     case "success":
-      return <main></main>;
+      return <main>success</main>;
 
     case "error":
 
@@ -62,7 +75,8 @@ export default function SingleReply() {
           >
             {reply && letter ? (
               letter.authorId === session.user.id &&
-              letter._id === reply.mailRepliedId ? (
+              letter._id === reply.mailRepliedId &&
+              !reply.reactionEmoji ? (
                 <Wrapper>
                   <Letter authorId={letter.authorId}>{letter.text}</Letter>
                   <Letter isReplyLetter={true} authorId={reply.authorId}>
