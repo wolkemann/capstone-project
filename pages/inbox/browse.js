@@ -24,6 +24,7 @@ export default function SingleReply() {
   const { data: letter } = useSWR(`/api/mails/${letterid}`);
 
   async function handleOnSendSticker() {
+    setSubmitState("pending");
     const updatedUserResponse = await fetch(`/api/users/${reply.authorId}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
@@ -33,46 +34,66 @@ export default function SingleReply() {
         },
       }),
     });
+    const response = updatedUserResponse.json();
+    if (response.ok) {
+      setSubmitState("success");
+    }
   }
 
-  return (
-    <main>
-      <UserContext.Provider
-        value={{ showPopup, setShowPopup, selectedSticker, setSelectedSticker }}
-      >
-        {reply && letter ? (
-          letter.authorId === session.user.id &&
-          letter._id === reply.mailRepliedId ? (
-            <Wrapper>
-              <Letter authorId={letter.authorId}>{letter.text}</Letter>
-              <Letter isReplyLetter={true} authorId={reply.authorId}>
-                {reply.text}
-              </Letter>
-              <Button
-                onClick={() => {
-                  setShowPopup(true);
-                }}
-              >
-                <Icon icon="fluent:sticker-20-regular" height="50" />
-                Do you like this letter?
-                <br />
-                Send a Sticker!
-              </Button>
+  switch (submitState) {
+    case "pending":
+      return <main></main>;
 
-              <StickersWindow onSendSticker={handleOnSendSticker} />
-            </Wrapper>
-          ) : (
-            <p>
-              The user that is trying to watch this conversation is not the
-              author of the letter
-            </p>
-          )
-        ) : null}
+    case "success":
+      return <main></main>;
 
-        <Navigation />
-      </UserContext.Provider>
-    </main>
-  );
+    case "error":
+
+    default:
+      return (
+        <main>
+          <UserContext.Provider
+            value={{
+              showPopup,
+              setShowPopup,
+              selectedSticker,
+              setSelectedSticker,
+            }}
+          >
+            {reply && letter ? (
+              letter.authorId === session.user.id &&
+              letter._id === reply.mailRepliedId ? (
+                <Wrapper>
+                  <Letter authorId={letter.authorId}>{letter.text}</Letter>
+                  <Letter isReplyLetter={true} authorId={reply.authorId}>
+                    {reply.text}
+                  </Letter>
+                  <Button
+                    onClick={() => {
+                      setShowPopup(true);
+                    }}
+                  >
+                    <Icon icon="fluent:sticker-20-regular" height="50" />
+                    Do you like this letter?
+                    <br />
+                    Send a Sticker!
+                  </Button>
+
+                  <StickersWindow onSendSticker={handleOnSendSticker} />
+                </Wrapper>
+              ) : (
+                <p>
+                  The user that is trying to watch this conversation is not the
+                  author of the letter
+                </p>
+              )
+            ) : null}
+
+            <Navigation />
+          </UserContext.Provider>
+        </main>
+      );
+  }
 }
 
 export async function getServerSideProps(context) {
