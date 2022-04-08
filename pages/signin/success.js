@@ -53,7 +53,7 @@ export default function SuccessMessage() {
       <OuterWindow>
         <ImageCenter>
           <Image
-            src="../../public/images/welcome.png"
+            src="/images/welcome.png"
             layout="fixed"
             width={180}
             height={180}
@@ -70,7 +70,7 @@ export default function SuccessMessage() {
       <OuterWindow>
         <ImageCenter>
           <Image
-            src="../../public/images/WhatToDo.png"
+            src="/images/WhatToDo.png"
             layout="fixed"
             width={180}
             height={180}
