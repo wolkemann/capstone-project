@@ -1,10 +1,19 @@
+/* ==========================
+
+Importing Libraries
+
+============================*/
 import useSWR from "swr";
 import { useState, createContext } from "react";
 import { useRouter } from "next/router";
 import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
+/* ==========================
 
+Importing App Components
+
+============================*/
 import StickersWindow from "../../components/StickersWindow/StickersWindow";
 import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";

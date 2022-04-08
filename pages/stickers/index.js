@@ -1,7 +1,16 @@
+/* ==========================
+
+Importing Libraries
+
+============================*/
 import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
 import useSWR from "swr";
+/* ==========================
 
+Importing App Components
+
+============================*/
 import { StickersArray } from "../../utils/stickers";
 import OuterWindow from "../../components/OuterWindow/OuterWindow";
 import { InnerWindow } from "../../components/InnerWindow/InnerWindow";

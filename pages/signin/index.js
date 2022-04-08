@@ -1,7 +1,19 @@
+/* ==========================
+
+Importing Libraries
+
+============================*/
+import Image from "next/image";
 import { getProviders, getSession, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import styled from "styled-components";
+/* ==========================
+
+Importing App Components
+
+============================*/
+import PopupTitle from "../../components/PopupTitle/PopupTitle";
 import OuterWindow from "../../components/OuterWindow/OuterWindow";
 import { InnerWindow } from "../../components/InnerWindow/InnerWindow";
 import { Button } from "../../components/Button/Button";
@@ -21,8 +33,12 @@ export default function SignIn({ providers }) {
 
   return (
     <main>
-      <Title>Sign In</Title>
+      <Image src="/images/title.svg" width="200" height="200" layout="fixed" />
+      <Title>Welcome to Gentle Letters</Title>
       <OuterWindow>
+        <PopupTitle>
+          <Title>Sign In</Title>
+        </PopupTitle>
         <InnerWindow>
           <ProvidersContainer>
             {Object.values(providers).map((provider, index) => (

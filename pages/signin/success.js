@@ -1,9 +1,18 @@
+/* ==========================
+
+Importing Libraries
+
+============================*/
 import styled from "styled-components";
 import { getSession, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+/* ==========================
 
+Importing App Components
+
+============================*/
 import OuterWindow from "../../components/OuterWindow/OuterWindow";
 import { InnerWindow } from "../../components/InnerWindow/InnerWindow";
 import { Button } from "../../components/Button/Button";
@@ -44,7 +53,7 @@ export default function SuccessMessage() {
       <OuterWindow>
         <ImageCenter>
           <Image
-            src="../../public/images/welcome.png"
+            src="/images/welcome.png"
             layout="fixed"
             width={180}
             height={180}
@@ -61,7 +70,7 @@ export default function SuccessMessage() {
       <OuterWindow>
         <ImageCenter>
           <Image
-            src="../../public/images/WhatToDo.png"
+            src="/images/WhatToDo.png"
             layout="fixed"
             width={180}
             height={180}

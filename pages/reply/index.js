@@ -1,7 +1,17 @@
+/* ==========================
+
+Importing Libraries
+
+============================*/
+import Head from "next/head";
 import useSWR from "swr";
 import styled from "styled-components";
-import Letter from "../../components/Letter/Letter";
+/* ==========================
 
+Importing App Components
+
+============================*/
+import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";
 
 export default function Reply() {
@@ -9,6 +19,9 @@ export default function Reply() {
 
   return (
     <main>
+      <Head>
+        <title>Gentle Letters :: Reply</title>
+      </Head>
       {letters.data ? (
         <MailsWrapper>
           {letters.data

@@ -1,21 +1,33 @@
+/* ==========================
+
+Importing Libraries
+
+============================*/
 import { useSession, getSession } from "next-auth/react";
 import Link from "next/link";
 import useSWR from "swr";
 import styled from "styled-components";
+/* ==========================
 
+Importing App Components
+
+============================*/
 import Navigation from "../../components/Navigation/Navigation";
 import InboxItem from "../../components/InboxItem/InboxItem";
 
 export default function Inbox() {
   const { data: replies } = useSWR("/api/replies");
 
+  if (replies) {
+    const fliteredReplies = replies.filter((reply) => {
+      return reply.reactionEmoji === false;
+    });
+  }
+
   return (
     <main>
-      {replies ? (
-        replies.filter((reply) => {
-          return reply.reactionEmoji === false;
-        }).length ? (
-          replies.map((reply) => {
+      {replies
+        ? fliteredReplies.map((reply) => {
             return (
               <Link
                 href={`/inbox/browse?replyid=${reply._id}&letterid=${reply.mailRepliedId}`}
@@ -27,10 +39,7 @@ export default function Inbox() {
               </Link>
             );
           })
-        ) : (
-          <p>No Replies</p>
-        )
-      ) : null}
+        : null}
 
       <Navigation />
     </main>
