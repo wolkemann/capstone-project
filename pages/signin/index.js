@@ -30,7 +30,7 @@ export default function SignIn({ providers }) {
                 key={provider.name}
                 onClick={() =>
                   signIn(provider.id, {
-                    callbackUrl: "http://localhost:3000/signin/success",
+                    callbackUrl: "/signin/success",
                   })
                 }
               >

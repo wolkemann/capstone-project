@@ -26,7 +26,6 @@ export default function SuccessMessage() {
         headers: { "content-type": "application/json" },
       });
       const updateUser = await response.json();
-      console.log(updateUser);
       setCreatedNickname(updateUser.data.nickname);
       session.user.nickname = updateUser.data.nickname;
     }
