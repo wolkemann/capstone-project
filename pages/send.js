@@ -3,6 +3,7 @@
 Importing Libraries
 
 ============================*/
+import Head from "next/head";
 import useSWR from "swr";
 import { useState } from "react";
 import { useSession, getSession } from "next-auth/react";
@@ -82,6 +83,9 @@ export default function Home() {
     default:
       return (
         <main>
+          <Head>
+            <title>Write a Letter :: Gentle Letters</title>
+          </Head>
           <WriteMailForm
             senderName={session.user.nickname}
             handleSubmit={handleSubmit}

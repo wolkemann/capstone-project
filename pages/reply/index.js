@@ -20,7 +20,7 @@ export default function Reply() {
   return (
     <main>
       <Head>
-        <title>Gentle Letters :: Reply</title>
+        <title>Reply :: Gentle Letters</title>
       </Head>
       {letters.data ? (
         <MailsWrapper>

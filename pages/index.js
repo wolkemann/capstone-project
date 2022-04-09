@@ -14,9 +14,11 @@ Importing App Components
 
 ============================*/
 import Navigation from "../components/Navigation/Navigation";
+import PopupTitle from "../components/PopupTitle/PopupTitle";
 import OuterWindow from "../components/OuterWindow/OuterWindow";
 import { InnerWindow } from "../components/InnerWindow/InnerWindow";
 import { Button } from "../components/Button/Button";
+import { Icon } from "@iconify/react";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -27,12 +29,25 @@ export default function Home() {
         <title>Gentle Letters</title>
       </Head>
       <OuterWindow>
+        <PopupTitle>
+          <h2>{session.user.nickname}</h2>
+          <Logout onClick={() => signOut()}>
+            <Icon icon="ci:exit" height="20" />
+          </Logout>
+        </PopupTitle>
         <InnerWindow>
-          <h2>Welcome, {session.user.nickname}</h2>
-          <Button onClick={() => signOut()}>Sign out</Button>
-        </InnerWindow>
-        <InnerWindow>
-          <Button>Write a Letter</Button>
+          <Link href="/send/">
+            <WriteButton>
+              <Icon icon="pixelarticons:chart-add" height="55" />
+              Write a Letter
+            </WriteButton>
+          </Link>
+          <Link href="/reply/">
+            <WriteButton>
+              <Icon icon="pixelarticons:reply-all" height="55" />
+              Write a Reply
+            </WriteButton>
+          </Link>
         </InnerWindow>
       </OuterWindow>
       <Navigation />
@@ -58,3 +73,22 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+const WriteButton = styled(Button)`
+  width: 100%;
+  font-size: 1.5em;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  padding: 2rem;
+  margin: 0;
+  gap: 1rem;
+`;
+
+const Logout = styled(Button)`
+  display: flex;
+  margin: 5px;
+  border-radius: 999px;
+  padding: 5px;
+  box-shadow: none;
+`;
