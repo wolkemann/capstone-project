@@ -49,7 +49,6 @@ export default function Home() {
       return (
         <main>
           <Loader text="Sending Letter..." />
-          <Navigation />
         </main>
       );
     case "success":
