@@ -3,6 +3,7 @@
 Importing Libraries
 
 ============================*/
+import Head from "next/head";
 import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
 import useSWR from "swr";
@@ -18,6 +19,7 @@ import PopupTitle from "../../components/PopupTitle/PopupTitle";
 import Navigation from "../../components/Navigation/Navigation";
 import StickerCounter from "../../components/StickerCounter/StickerCounter";
 import Sticker from "../../components/Sticker/Sticker";
+import Loader from "../../components/Loader/Loader";
 
 export default function StickersPage() {
   const { data: session } = useSession();
@@ -25,11 +27,15 @@ export default function StickersPage() {
 
   return (
     <main>
-      <OuterWindow>
-        <PopupTitle>Recently Obtained Stickers</PopupTitle>
-        <RecentStickersWrapper>
-          {user
-            ? user.stickers
+      <Head>
+        <title>Stickers Collection :: Gentle Letters</title>
+      </Head>
+      {user ? (
+        <>
+          <OuterWindow>
+            <PopupTitle>Recently Obtained Stickers</PopupTitle>
+            <RecentStickersWrapper>
+              {user.stickers
                 .slice(user.stickers.length - 5, user.stickers.length)
                 .map((recentSticker, index) => {
                   return (
@@ -40,15 +46,13 @@ export default function StickersPage() {
                       </p>
                     </RecentSticker>
                   );
-                })
-            : null}
-        </RecentStickersWrapper>
-      </OuterWindow>
-      <OuterWindow>
-        <PopupTitle>Stickers Collection</PopupTitle>
-        <ContentWindow>
-          {user
-            ? StickersArray.map((sticker, index) => {
+                })}
+            </RecentStickersWrapper>
+          </OuterWindow>
+          <OuterWindow>
+            <PopupTitle>Stickers Collection</PopupTitle>
+            <ContentWindow>
+              {StickersArray.map((sticker, index) => {
                 return (
                   <StickerCounter
                     key={index}
@@ -56,10 +60,14 @@ export default function StickersPage() {
                     stickers={user.stickers}
                   />
                 );
-              })
-            : null}
-        </ContentWindow>
-      </OuterWindow>
+              })}
+            </ContentWindow>
+          </OuterWindow>
+        </>
+      ) : (
+        <Loader />
+      )}
+
       <Navigation />
     </main>
   );

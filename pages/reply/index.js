@@ -13,6 +13,7 @@ Importing App Components
 ============================*/
 import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";
+import Loader from "../../components/Loader/Loader";
 
 export default function Reply() {
   const letters = useSWR("/api/mails");
@@ -39,7 +40,9 @@ export default function Reply() {
               );
             })}
         </MailsWrapper>
-      ) : null}
+      ) : (
+        <Loader />
+      )}
       <Navigation />
     </main>
   );

@@ -3,6 +3,7 @@
 Importing Libraries
 
 ============================*/
+import Head from "next/head";
 import styled from "styled-components";
 import { getSession, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -50,6 +51,9 @@ export default function SuccessMessage() {
 
   return (
     <Main>
+      <Head>
+        <title>Login Successful! :: Gentle Letters</title>
+      </Head>
       <OuterWindow>
         <ImageCenter>
           <Image

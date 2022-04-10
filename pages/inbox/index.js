@@ -3,6 +3,7 @@
 Importing Libraries
 
 ============================*/
+import Head from "next/head";
 import { useSession, getSession } from "next-auth/react";
 import Link from "next/link";
 import useSWR from "swr";
@@ -12,6 +13,7 @@ import styled from "styled-components";
 Importing App Components
 
 ============================*/
+import Loader from "../../components/Loader/Loader";
 import Navigation from "../../components/Navigation/Navigation";
 import InboxItem from "../../components/InboxItem/InboxItem";
 
@@ -26,20 +28,25 @@ export default function Inbox() {
 
   return (
     <main>
-      {replies
-        ? fliteredReplies.map((reply) => {
-            return (
-              <Link
-                href={`/inbox/browse?replyid=${reply._id}&letterid=${reply.mailRepliedId}`}
-                key={reply._id}
-              >
-                <a>
-                  <InboxItem sender={reply.authorId} />
-                </a>
-              </Link>
-            );
-          })
-        : null}
+      <Head>
+        <title>Inbox :: Gentle Letters</title>
+      </Head>
+      {replies ? (
+        fliteredReplies.map((reply) => {
+          return (
+            <Link
+              href={`/inbox/browse?replyid=${reply._id}&letterid=${reply.mailRepliedId}`}
+              key={reply._id}
+            >
+              <a>
+                <InboxItem sender={reply.authorId} />
+              </a>
+            </Link>
+          );
+        })
+      ) : (
+        <Loader />
+      )}
 
       <Navigation />
     </main>
