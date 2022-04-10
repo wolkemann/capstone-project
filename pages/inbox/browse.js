@@ -18,6 +18,7 @@ import StickersWindow from "../../components/StickersWindow/StickersWindow";
 import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";
 import { Button } from "../../components/Button/Button";
+import Loader from "../../components/Loader/Loader";
 
 export const UserContext = createContext();
 
@@ -45,7 +46,6 @@ export default function SingleReply() {
     });
     //const response = await updatedUserResponse.json();
     if (updatedUserResponse.ok) {
-      console.log("response was ok");
       const updateReplyResponse = await fetch(`/api/replies/${reply._id}`, {
         method: "PATCH",
         headers: { "content-type": "application/json" },
@@ -63,7 +63,11 @@ export default function SingleReply() {
 
   switch (submitState) {
     case "pending":
-      return <main>pending</main>;
+      return (
+        <main>
+          <Loader text="Sending Sticker..." />
+        </main>
+      );
 
     case "success":
       return <main>success</main>;
@@ -109,7 +113,9 @@ export default function SingleReply() {
                   author of the letter
                 </p>
               )
-            ) : null}
+            ) : (
+              <Loader />
+            )}
 
             <Navigation />
           </UserContext.Provider>
