@@ -26,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0.5rem 1rem;
     margin-bottom: 95px;
   }
-a {
+  a {
   & button > {
     text-decoration: none;
   }

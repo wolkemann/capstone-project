@@ -54,7 +54,6 @@ export default function SingleReply() {
         }),
       });
 
-      console.log(updateReplyResponse);
       //const returnedReply = await updateReply.json();
       if (updateReplyResponse.ok) {
         setSubmitState("success");

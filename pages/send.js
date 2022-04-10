@@ -3,6 +3,7 @@
 Importing Libraries
 
 ============================*/
+import Head from "next/head";
 import useSWR from "swr";
 import { useState } from "react";
 import { useSession, getSession } from "next-auth/react";
@@ -15,6 +16,7 @@ Importing App Components
 import WriteMailForm from "../components/WriteMailForm/WriteMailForm";
 import { Button } from "../components/Button/Button";
 import Navigation from "../components/Navigation/Navigation";
+import Loader from "../components/Loader/Loader";
 
 export default function Home() {
   const mails = useSWR("/api/mails");
@@ -46,7 +48,7 @@ export default function Home() {
     case "pending":
       return (
         <main>
-          <p>Pending</p>
+          <Loader text="Sending Letter..." />
           <Navigation />
         </main>
       );
@@ -82,6 +84,9 @@ export default function Home() {
     default:
       return (
         <main>
+          <Head>
+            <title>Write a Letter :: Gentle Letters</title>
+          </Head>
           <WriteMailForm
             senderName={session.user.nickname}
             handleSubmit={handleSubmit}

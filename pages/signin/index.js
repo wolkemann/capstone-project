@@ -3,6 +3,7 @@
 Importing Libraries
 
 ============================*/
+import Head from "next/head";
 import Image from "next/image";
 import { getProviders, getSession, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -33,6 +34,9 @@ export default function SignIn({ providers }) {
 
   return (
     <main>
+      <Head>
+        <title>Login :: Gentle Letters</title>
+      </Head>
       <Image src="/images/title.svg" width="200" height="200" layout="fixed" />
       <Title>Welcome to Gentle Letters</Title>
       <OuterWindow>
