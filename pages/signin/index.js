@@ -37,7 +37,13 @@ export default function SignIn({ providers }) {
       <Head>
         <title>Login :: Gentle Letters</title>
       </Head>
-      <Image src="/images/title.svg" width="200" height="200" layout="fixed" />
+      <Image
+        src="/images/title.svg"
+        width="200"
+        height="200"
+        layout="fixed"
+        alt="Gentle Letters logo"
+      />
       <Title>Welcome to Gentle Letters</Title>
       <OuterWindow>
         <PopupTitle>
