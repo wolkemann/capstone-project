@@ -4,6 +4,7 @@ Importing Libraries
 
 ============================*/
 import Head from "next/head";
+import Link from "next/link";
 import useSWR from "swr";
 import { useState } from "react";
 import { useSession, getSession } from "next-auth/react";
@@ -19,7 +20,6 @@ import Navigation from "../components/Navigation/Navigation";
 import Loader from "../components/Loader/Loader";
 
 export default function Home() {
-  const mails = useSWR("/api/mails");
   const { data: session } = useSession();
 
   const [submitState, setSubmitState] = useState("idle");
@@ -36,7 +36,6 @@ export default function Home() {
     const createdMail = await response.json();
     if (response.ok) {
       setSubmitState("success");
-      mails.mutate();
       setError();
     } else {
       setSubmitState("error");
@@ -60,9 +59,11 @@ export default function Home() {
               Your letter was successfully sent to another random user! Now is
               time to relax and wait for your reply letter!
             </ResponseMessage>
-            <Button as="a" href="/">
-              Return to Home
-            </Button>
+            <Link href="/">
+              <a>
+                <Button>Return to Home</Button>
+              </a>
+            </Link>
           </ResponseWindow>
           <Navigation />
         </main>
@@ -73,7 +74,11 @@ export default function Home() {
           <ResponseWindow>
             <ResponseTitle>Error</ResponseTitle>
             <ResponseMessage>Oops! Something went wrong.</ResponseMessage>
-            <Button as="a" href="/send/">
+            <Button
+              onClick={() => {
+                setSubmitState("idle");
+              }}
+            >
               Try again
             </Button>
           </ResponseWindow>
