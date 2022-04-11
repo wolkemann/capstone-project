@@ -3,6 +3,7 @@
 Importing Libraries
 
 ============================*/
+import Head from "next/head";
 import useSWR from "swr";
 import { useState, createContext } from "react";
 import { useRouter } from "next/router";
@@ -65,6 +66,9 @@ export default function SingleReply() {
     case "pending":
       return (
         <main>
+          <Head>
+            <title> Sending Sticker... :: Gentle Letters</title>
+          </Head>
           <Loader text="Sending Sticker..." />
         </main>
       );
@@ -77,6 +81,9 @@ export default function SingleReply() {
     default:
       return (
         <main>
+          <Head>
+            <title> Browse Conversation :: Gentle Letters</title>
+          </Head>
           <UserContext.Provider
             value={{
               showPopup,
