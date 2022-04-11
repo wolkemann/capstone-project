@@ -9,11 +9,11 @@ Gentle Letters is an anonymous and relaxing social App where you can send letter
 - HTML5
 - CSS3
 - JavaScript
+- React.js
+  - styled-components
 - Next.js
   - NexAuth.js
   - SWR
-- React.js
-  - styled-components
 
 ## Demo
 

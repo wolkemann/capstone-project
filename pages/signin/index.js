@@ -58,6 +58,7 @@ export default function SignIn({ providers }) {
                 <p>Sign in with {provider.name}</p>
               </Button>
             ))}
+            * github at the moment is only for local testing
           </ProvidersContainer>
         </InnerWindow>
       </OuterWindow>
