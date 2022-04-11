@@ -20,10 +20,9 @@ export default function Reply() {
   const letters = useSWR("/api/mails");
 
   if (letters.data) {
-    console.log(letters.data);
-    const filteredLetters = letters.data.filter(
-      (letter) => letter.hasAReply === false
-    );
+    const filteredLetters = letters.data.filter((letter) => {
+      return letter.hasAReply === false;
+    });
   }
 
   return (
@@ -33,11 +32,8 @@ export default function Reply() {
       </Head>
       {letters.data ? (
         <MailsWrapper>
-          {letters.data
-            .filter((letter) => {
-              letter.hasAReply === false;
-            })
-            .map((letter) => {
+          {filteredLetters.length > 0 ? (
+            filteredLetters.map((letter) => {
               return (
                 <Letter
                   key={letter._id}
@@ -48,7 +44,16 @@ export default function Reply() {
                   {letter.text}
                 </Letter>
               );
-            })}
+            })
+          ) : (
+            <UIMessage
+              image="/images/empty.svg"
+              buttonText="Why don't you write a Letter first?"
+              redirectURL="/send/"
+            >
+              There are no Letters to which you can reply to.
+            </UIMessage>
+          )}
         </MailsWrapper>
       ) : (
         <Loader />
