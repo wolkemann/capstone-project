@@ -62,7 +62,7 @@ const LetterWrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
-
+  font-family: "Roboto Mono", monospace;
   padding: 1rem;
   color: var(--text-color);
   font-size: 1.2em;

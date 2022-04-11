@@ -4,7 +4,6 @@ Importing Libraries
 
 ============================*/
 import Head from "next/head";
-import Link from "next/link";
 import { useState } from "react";
 import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
@@ -47,19 +46,24 @@ export default function Home() {
     case "pending":
       return (
         <main>
+          <Head>
+            <title>Sending Letter... :: Gentle Letters</title>
+          </Head>
           <Loader text="Sending Letter..." />
         </main>
       );
     case "success":
       return (
         <main>
+          <Head>
+            <title>Yay! :: Gentle Letters</title>
+          </Head>
           <UIMessage
             image="/images/success.svg"
-            title="Letter sent!"
             redirectURL="/"
-            buttonText="Go to your home page"
+            buttonText="Go to your Dashboard"
           >
-            Your letter was successfully sent to random user. Now is time to
+            Your Sticker was successfully sent to a random user. Now is time to
             relax and wait for your reply letter!
           </UIMessage>
         </main>
@@ -67,9 +71,11 @@ export default function Home() {
     case "error":
       return (
         <main>
+          <Head>
+            <title>Oops! :: Gentle Letters</title>
+          </Head>
           <UIMessage
             image="/images/error.svg"
-            title="Oops!"
             redirectURL="/send/"
             buttonText="Try again"
             handleSubmitState={setSubmitState}

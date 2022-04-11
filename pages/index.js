@@ -37,16 +37,16 @@ export default function Home() {
         </PopupTitle>
         <InnerWindow>
           <Link href="/send/">
-            <WriteButton>
+            <BigButton>
               <Icon icon="pixelarticons:chart-add" height="55" />
               Write a Letter
-            </WriteButton>
+            </BigButton>
           </Link>
           <Link href="/reply/">
-            <WriteButton>
+            <BigButton>
               <Icon icon="pixelarticons:reply-all" height="55" />
               Write a Reply
-            </WriteButton>
+            </BigButton>
           </Link>
         </InnerWindow>
       </OuterWindow>
@@ -74,14 +74,14 @@ export async function getServerSideProps(context) {
   };
 }
 
-const WriteButton = styled(Button)`
+const BigButton = styled(Button)`
   width: 100%;
   font-size: 1.5em;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   padding: 2rem;
-  margin: 0;
+  margin: 0.5rem 0;
   gap: 1rem;
 `;
 

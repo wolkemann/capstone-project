@@ -16,6 +16,7 @@ Importing App Components
 import Loader from "../../components/Loader/Loader";
 import Navigation from "../../components/Navigation/Navigation";
 import InboxItem from "../../components/InboxItem/InboxItem";
+import UIMessage from "../../components/UIMessage/UIMessage";
 
 export default function Inbox() {
   const { data: replies } = useSWR("/api/replies");
@@ -32,18 +33,28 @@ export default function Inbox() {
         <title>Inbox :: Gentle Letters</title>
       </Head>
       {replies ? (
-        fliteredReplies.map((reply) => {
-          return (
-            <Link
-              href={`/inbox/browse?replyid=${reply._id}&letterid=${reply.mailRepliedId}`}
-              key={reply._id}
-            >
-              <a>
-                <InboxItem sender={reply.authorId} />
-              </a>
-            </Link>
-          );
-        })
+        fliteredReplies.letters > 0 ? (
+          fliteredReplies.map((reply) => {
+            return (
+              <Link
+                href={`/inbox/browse?replyid=${reply._id}&letterid=${reply.mailRepliedId}`}
+                key={reply._id}
+              >
+                <a>
+                  <InboxItem sender={reply.authorId} />
+                </a>
+              </Link>
+            );
+          })
+        ) : (
+          <UIMessage
+            image="/images/empty.svg"
+            buttonText="Why don't you write a Letter first?"
+            redirectURL="/send/"
+          >
+            There are no replies to browse.
+          </UIMessage>
+        )
       ) : (
         <Loader />
       )}

@@ -14,9 +14,16 @@ Importing App Components
 import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";
 import Loader from "../../components/Loader/Loader";
+import UIMessage from "../../components/UIMessage/UIMessage";
 
 export default function Reply() {
   const letters = useSWR("/api/mails");
+
+  if (letters.data) {
+    const filteredLetters = letters.data.filter(
+      (letter) => letter.hasAReply === false
+    );
+  }
 
   return (
     <main>
@@ -25,9 +32,8 @@ export default function Reply() {
       </Head>
       {letters.data ? (
         <MailsWrapper>
-          {letters.data
-            .filter((letter) => letter.hasAReply === false)
-            .map((letter) => {
+          {filteredLetters.length > 0 ? (
+            filteredLetters.data.map((letter) => {
               return (
                 <Letter
                   key={letter._id}
@@ -38,7 +44,16 @@ export default function Reply() {
                   {letter.text}
                 </Letter>
               );
-            })}
+            })
+          ) : (
+            <UIMessage
+              image="/images/empty.svg"
+              buttonText="Why don't you write a Letter first?"
+              redirectURL="/send/"
+            >
+              There are no letters you can write a reply to.
+            </UIMessage>
+          )}
         </MailsWrapper>
       ) : (
         <Loader />
