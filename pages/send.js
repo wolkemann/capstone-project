@@ -17,6 +17,7 @@ import WriteMailForm from "../components/WriteMailForm/WriteMailForm";
 import { Button } from "../components/Button/Button";
 import Navigation from "../components/Navigation/Navigation";
 import Loader from "../components/Loader/Loader";
+import UIMessage from "../components/UIMessage/UIMessage";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -52,36 +53,29 @@ export default function Home() {
     case "success":
       return (
         <main>
-          <ResponseWindow>
-            <ResponseTitle>Letter sent</ResponseTitle>
-            <ResponseMessage>
-              Your letter was successfully sent to another random user! Now is
-              time to relax and wait for your reply letter!
-            </ResponseMessage>
-            <Link href="/">
-              <a>
-                <Button>Return to Home</Button>
-              </a>
-            </Link>
-          </ResponseWindow>
-          <Navigation />
+          <UIMessage
+            image="/images/success.svg"
+            title="Letter sent!"
+            redirectURL="/"
+            buttonText="Go to your home page"
+          >
+            Your letter was successfully sent to random user. Now is time to
+            relax and wait for your reply letter!
+          </UIMessage>
         </main>
       );
     case "error":
       return (
         <main>
-          <ResponseWindow>
-            <ResponseTitle>Error</ResponseTitle>
-            <ResponseMessage>Oops! Something went wrong.</ResponseMessage>
-            <Button
-              onClick={() => {
-                setSubmitState("idle");
-              }}
-            >
-              Try again
-            </Button>
-          </ResponseWindow>
-          <Navigation />
+          <UIMessage
+            image="/images/error.svg"
+            title="Oops!"
+            redirectURL="/send/"
+            buttonText="Try again"
+            handleSubmitState={setSubmitState}
+          >
+            Oops! Something went wrong...
+          </UIMessage>
         </main>
       );
     default:
