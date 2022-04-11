@@ -20,7 +20,7 @@ import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";
 import { Button } from "../../components/Button/Button";
 import Loader from "../../components/Loader/Loader";
-import UIMessage from "../components/UIMessage/UIMessage";
+import UIMessage from "../../components/UIMessage/UIMessage";
 
 export const UserContext = createContext();
 
