@@ -32,7 +32,7 @@ export default function Reply() {
       </Head>
       {letters.data ? (
         <MailsWrapper>
-          {filteredLetters.length > 0 ? (
+          {filteredLetters.isArray() && filteredLetters.length > 0 ? (
             filteredLetters.data.map((letter) => {
               return (
                 <Letter
