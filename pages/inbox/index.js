@@ -33,7 +33,7 @@ export default function Inbox() {
         <title>Inbox :: Gentle Letters</title>
       </Head>
       {replies ? (
-        fliteredReplies.letters > 0 ? (
+        fliteredReplies.length > 0 ? (
           fliteredReplies.map((reply) => {
             return (
               <Link
