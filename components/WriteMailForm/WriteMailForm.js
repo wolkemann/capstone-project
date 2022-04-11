@@ -78,6 +78,7 @@ const LetterBody = styled.div`
 `;
 
 const MailContent = styled.textarea`
+  font-family: "Roboto Mono", monospace;
   resize: none;
   width: 100%;
   height: 61vh;

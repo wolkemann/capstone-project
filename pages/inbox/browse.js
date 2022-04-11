@@ -20,6 +20,7 @@ import Letter from "../../components/Letter/Letter";
 import Navigation from "../../components/Navigation/Navigation";
 import { Button } from "../../components/Button/Button";
 import Loader from "../../components/Loader/Loader";
+import UIMessage from "../../components/UIMessage/UIMessage";
 
 export const UserContext = createContext();
 
@@ -74,9 +75,37 @@ export default function SingleReply() {
       );
 
     case "success":
-      return <main>success</main>;
+      return (
+        <main>
+          <Head>
+            <title>Yay! :: Gentle Letters</title>
+          </Head>
+          <UIMessage
+            image="/images/success.svg"
+            title="Sticker sent!"
+            redirectURL="/"
+            buttonText="Go to your Dashboard"
+          >
+            Your Sticker was successfully sent to your misterious Helper!
+          </UIMessage>
+        </main>
+      );
 
     case "error":
+      return (
+        <main>
+          <Head>
+            <title>Oops! :: Gentle Letters</title>
+          </Head>
+          <UIMessage
+            image="/images/error.svg"
+            redirectURL="/"
+            buttonText="Go to your Dashboard"
+          >
+            Oops something went wrong!
+          </UIMessage>
+        </main>
+      );
 
     default:
       return (

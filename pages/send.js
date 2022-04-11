@@ -4,7 +4,6 @@ Importing Libraries
 
 ============================*/
 import Head from "next/head";
-import Link from "next/link";
 import { useState } from "react";
 import { useSession, getSession } from "next-auth/react";
 import styled from "styled-components";
@@ -17,6 +16,7 @@ import WriteMailForm from "../components/WriteMailForm/WriteMailForm";
 import { Button } from "../components/Button/Button";
 import Navigation from "../components/Navigation/Navigation";
 import Loader from "../components/Loader/Loader";
+import UIMessage from "../components/UIMessage/UIMessage";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -46,42 +46,42 @@ export default function Home() {
     case "pending":
       return (
         <main>
+          <Head>
+            <title>Sending Letter... :: Gentle Letters</title>
+          </Head>
           <Loader text="Sending Letter..." />
         </main>
       );
     case "success":
       return (
         <main>
-          <ResponseWindow>
-            <ResponseTitle>Letter sent</ResponseTitle>
-            <ResponseMessage>
-              Your letter was successfully sent to another random user! Now is
-              time to relax and wait for your reply letter!
-            </ResponseMessage>
-            <Link href="/">
-              <a>
-                <Button>Return to Home</Button>
-              </a>
-            </Link>
-          </ResponseWindow>
-          <Navigation />
+          <Head>
+            <title>Yay! :: Gentle Letters</title>
+          </Head>
+          <UIMessage
+            image="/images/success.svg"
+            redirectURL="/"
+            buttonText="Go to your Dashboard"
+          >
+            Your Sticker was successfully sent to a random user. Now is time to
+            relax and wait for your reply letter!
+          </UIMessage>
         </main>
       );
     case "error":
       return (
         <main>
-          <ResponseWindow>
-            <ResponseTitle>Error</ResponseTitle>
-            <ResponseMessage>Oops! Something went wrong.</ResponseMessage>
-            <Button
-              onClick={() => {
-                setSubmitState("idle");
-              }}
-            >
-              Try again
-            </Button>
-          </ResponseWindow>
-          <Navigation />
+          <Head>
+            <title>Oops! :: Gentle Letters</title>
+          </Head>
+          <UIMessage
+            image="/images/error.svg"
+            redirectURL="/send/"
+            buttonText="Try again"
+            handleSubmitState={setSubmitState}
+          >
+            Oops! Something went wrong...
+          </UIMessage>
         </main>
       );
     default:

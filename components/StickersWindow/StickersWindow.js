@@ -79,7 +79,13 @@ export default function StickersWindow({ onSendSticker }) {
         {selectedSticker ? (
           <>
             <WarningWrapper>
-              <Image src={Attention} width={250} height={250} priority={true} />
+              <Image
+                src={Attention}
+                width={250}
+                height={250}
+                priority={true}
+                alt="warning message"
+              />
               <WarningText>
                 When you send a Sticker, the correspondence between you and your
                 misterious helper is concluded and will be deleted from your
