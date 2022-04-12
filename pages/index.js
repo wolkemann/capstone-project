@@ -20,6 +20,7 @@ import OuterWindow from "../components/OuterWindow/OuterWindow";
 import { InnerWindow } from "../components/InnerWindow/InnerWindow";
 import { Button } from "../components/Button/Button";
 import { Icon } from "@iconify/react";
+import DashboardStatistics from "../components/DashboardStatistics/DashboardStatistics";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -37,6 +38,7 @@ export default function Home() {
           </Logout>
         </PopupTitle>
         <InnerWindow>
+          <DashboardStatistics user={session.user} />
           <Link href="/send/">
             <BigButton>
               <Icon icon="pixelarticons:chart-add" height="55" />
@@ -84,6 +86,9 @@ const BigButton = styled(Button)`
   padding: 2rem;
   margin: 0.5rem 0;
   gap: 1rem;
+  & :last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const Logout = styled(Button)`
