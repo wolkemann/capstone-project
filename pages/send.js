@@ -63,7 +63,7 @@ export default function Home() {
             redirectURL="/"
             buttonText="Go to your Dashboard"
           >
-            Your Sticker was successfully sent to a random user. Now is time to
+            Your Letter was successfully sent to a random user. Now is time to
             relax and wait for your reply letter!
           </UIMessage>
         </main>

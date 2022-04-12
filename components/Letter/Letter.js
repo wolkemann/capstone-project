@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSession } from "next-auth/react";
 import styled from "styled-components";
 import useSWR from "swr";
@@ -13,8 +14,25 @@ export default function Letter({
   replyId,
   showActions,
 }) {
+  const [submitState, setSubmitState] = useState("idle");
   const { data: session } = useSession();
   const author = useSWR(`/api/users/${authorId}`);
+
+  async function handleShuffle() {
+    const response = await fetch(
+      `/api/mails/${replyId}?shuffle=true&authorId=${authorId}`,
+      {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+      }
+    );
+    const createdMail = await response.json();
+    if (response.ok) {
+      setSubmitState("success");
+    } else {
+      setSubmitState("error");
+    }
+  }
 
   return (
     <LetterWrapper
@@ -22,7 +40,7 @@ export default function Letter({
     >
       {author.data ? (
         <>
-          <LetterContent style={showActions ? { minHeight: "63vh" } : null}>
+          <LetterContent style={showActions ? { minHeight: "60vh" } : null}>
             {children}
           </LetterContent>
           <ActionWrapper>
@@ -45,7 +63,7 @@ export default function Letter({
                     </Button>
                   </a>
                 </Link>
-                <Button>
+                <Button onClick={handleShuffle}>
                   <Icon icon="ant-design:cloud-sync-outlined" height="40" />
                   Shuffle Letter
                 </Button>
