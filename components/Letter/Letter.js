@@ -40,7 +40,7 @@ export default function Letter({
     >
       {author.data ? (
         <>
-          <LetterContent style={showActions ? { minHeight: "60vh" } : null}>
+          <LetterContent style={showActions ? { minHeight: "63vh" } : null}>
             {children}
           </LetterContent>
           <ActionWrapper>
