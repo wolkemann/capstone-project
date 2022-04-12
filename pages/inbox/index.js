@@ -40,7 +40,7 @@ export default function Inbox() {
                 href={`/inbox/browse?replyid=${reply._id}&letterid=${reply.mailRepliedId}`}
                 key={reply._id}
               >
-                <a>
+                <a style={{ textDecoration: "none" }}>
                   <InboxItem sender={reply.authorId} />
                 </a>
               </Link>

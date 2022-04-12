@@ -7,7 +7,6 @@ export default async function handler(request, response) {
   const { authorid } = request.query;
   try {
     connectDb();
-
     const session = await getSession({ req: request });
 
     switch (request.method) {
