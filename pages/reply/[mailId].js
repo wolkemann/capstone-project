@@ -17,6 +17,8 @@ import WriteMailForm from "../../components/WriteMailForm/WriteMailForm";
 import Navigation from "../../components/Navigation/Navigation";
 import Letter from "../../components/Letter/Letter";
 import { Button } from "../../components/Button/Button";
+import Loader from "../components/Loader/Loader";
+import UIMessage from "../components/UIMessage/UIMessage";
 
 export default function ReplyToMail() {
   const [submitState, setSubmitState] = useState("idle");
@@ -60,36 +62,42 @@ export default function ReplyToMail() {
     case "pending":
       return (
         <main>
-          <p>Pending</p>
-          <Navigation />
+          <Head>
+            <title>Sending Reply... :: Gentle Letters</title>
+          </Head>
+          <Loader text="Sending Letter..." />
         </main>
       );
     case "success":
       return (
         <main>
-          <ResponseWindow>
-            <ResponseTitle>Reply sent</ResponseTitle>
-            <ResponseMessage>
-              Your Reply letter was successfully sent!
-            </ResponseMessage>
-            <Button as="a" href="/">
-              Return to Home
-            </Button>
-          </ResponseWindow>
-          <Navigation />
+          <Head>
+            <title>Yay! :: Gentle Letters</title>
+          </Head>
+          <UIMessage
+            image="/images/success.svg"
+            redirectURL="/"
+            buttonText="Go to your Dashboard"
+          >
+            Your Reply was successfully sent! Good job! Your kind words will
+            surely help your misterious friend.
+          </UIMessage>
         </main>
       );
     case "error":
       return (
         <main>
-          <ResponseWindow>
-            <ResponseTitle>Error</ResponseTitle>
-            <ResponseMessage>Oops! Something went wrong.</ResponseMessage>
-            <Button as="a" href="/send/">
-              Try again
-            </Button>
-          </ResponseWindow>
-          <Navigation />
+          <Head>
+            <title>Oops! :: Gentle Letters</title>
+          </Head>
+          <UIMessage
+            image="/images/error.svg"
+            redirectURL="/send/"
+            buttonText="Try again"
+            handleSubmitState={setSubmitState}
+          >
+            Oops! Something went wrong...
+          </UIMessage>
         </main>
       );
     default:
