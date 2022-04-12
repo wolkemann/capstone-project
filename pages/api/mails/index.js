@@ -4,6 +4,7 @@ import User from "../../../schemas/User";
 import { connectDb } from "../../../utils/db";
 
 export default async function handler(request, response) {
+  const { authorid } = request.query;
   try {
     connectDb();
 
@@ -11,16 +12,30 @@ export default async function handler(request, response) {
 
     switch (request.method) {
       case "GET":
-        const mails = await Mail.find({ recipientId: session.user.id }).sort({
-          createdAt: -1,
-        });
-        response.status(200).json(mails);
+        if (session) {
+          if (authorid) {
+            const mails = await Mail.find({
+              authorId: authorid,
+            }).sort({
+              createdAt: -1,
+            });
+
+            response.status(200).json(mails);
+          } else {
+            const mails = await Mail.find({
+              recipientId: session.user.id,
+            }).sort({
+              createdAt: -1,
+            });
+
+            response.status(200).json(mails);
+          }
+        }
         break;
 
       case "POST":
         if (session) {
           const selectUser = await User.find({ _id: { $ne: session.user.id } });
-          console.log(selectUser.length);
 
           const assignRecipient =
             selectUser[Math.floor(Math.random() * selectUser.length) + 0];

@@ -46,7 +46,7 @@ export default function WriteMailForm({
       </LetterBody>
       <Button>
         <Icon icon="bi:send" height="40" />
-        {isReplyLetter ? "Send your response Letter" : "Send your Letter"}
+        {isReplyLetter ? "Send your reply" : "Send your Letter"}
       </Button>
     </Form>
   );

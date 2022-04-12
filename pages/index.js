@@ -9,6 +9,7 @@ import Link from "next/link";
 import Head from "next/head";
 import styled from "styled-components";
 import { useSession, getSession, signIn, signOut } from "next-auth/react";
+import useUserStat from "../utils/useUserStat";
 /* ==========================
 
 Importing App Components
@@ -24,6 +25,8 @@ import { Icon } from "@iconify/react";
 export default function Home() {
   const { data: session } = useSession();
 
+  const test = useUserStat(session.user.id, "replies");
+
   return (
     <main>
       <Head>
@@ -37,6 +40,7 @@ export default function Home() {
           </Logout>
         </PopupTitle>
         <InnerWindow>
+          {test}
           <Link href="/send/">
             <BigButton>
               <Icon icon="pixelarticons:chart-add" height="55" />
