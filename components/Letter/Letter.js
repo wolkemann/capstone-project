@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { Icon } from "@iconify/react";
 import { Button } from "../Button/Button";
+import UIMessage from "../UIMessage/UIMessage";
 
 export default function Letter({
   children,
@@ -33,48 +34,89 @@ export default function Letter({
       setSubmitState("error");
     }
   }
-
-  return (
-    <LetterWrapper
-      style={isReplyLetter ? { backgroundColor: "#b4e0fa" } : null}
-    >
-      {author.data ? (
+  switch (submitState) {
+    case "pending":
+      return (
         <>
-          <LetterContent style={showActions ? { minHeight: "53vh" } : null}>
-            {children}
-          </LetterContent>
-          <ActionWrapper>
-            <SenderSignature>
-              {author.data._id === session.user.id ? (
-                <>- Your Letter</>
-              ) : (
-                <>
-                  - Letter from <strong>{author.data.nickname}</strong>
-                </>
-              )}
-            </SenderSignature>
-            {showActions ? (
-              <LetterActions>
-                <Link href={`/reply/${replyId}`}>
-                  <a>
-                    <Button>
-                      <Icon icon="pixelarticons:reply-all" height="40" />
-                      Reply
-                    </Button>
-                  </a>
-                </Link>
-                <Button onClick={handleShuffle}>
-                  <Icon icon="ant-design:cloud-sync-outlined" height="40" />
-                  Shuffle Letter
-                </Button>
-              </LetterActions>
-            ) : null}
-          </ActionWrapper>
+          <Loader text="Sending Letter..." />
         </>
-      ) : null}
-    </LetterWrapper>
-  );
+      );
+    case "success":
+      return (
+        <UIWrapper>
+          <UIMessage>
+            Shuffle Successful! Another User will take care of this letter.
+          </UIMessage>
+        </UIWrapper>
+      );
+    case "error":
+      return (
+        <>
+          <UIMessage
+            image="/images/error.svg"
+            redirectURL="/send/"
+            buttonText="Try again"
+            handleSubmitState={setSubmitState}
+          >
+            Oops! Something went wrong...
+          </UIMessage>
+        </>
+      );
+    default:
+      return (
+        <LetterWrapper
+          style={isReplyLetter ? { backgroundColor: "#b4e0fa" } : null}
+        >
+          {author.data ? (
+            <>
+              <LetterContent style={showActions ? { minHeight: "53vh" } : null}>
+                {children}
+              </LetterContent>
+              <ActionWrapper>
+                <SenderSignature>
+                  {author.data._id === session.user.id ? (
+                    <>- Your Letter</>
+                  ) : isReplyLetter ? (
+                    <>
+                      - Reply from <strong>{author.data.nickname}</strong>
+                    </>
+                  ) : (
+                    <>
+                      - Letter from <strong>{author.data.nickname}</strong>
+                    </>
+                  )}
+                </SenderSignature>
+                {showActions ? (
+                  <LetterActions>
+                    <Link href={`/reply/${replyId}`}>
+                      <a>
+                        <Button>
+                          <Icon icon="pixelarticons:reply-all" height="40" />
+                          Reply
+                        </Button>
+                      </a>
+                    </Link>
+                    <Button onClick={handleShuffle}>
+                      <Icon icon="ant-design:cloud-sync-outlined" height="40" />
+                      Shuffle Letter
+                    </Button>
+                  </LetterActions>
+                ) : null}
+              </ActionWrapper>
+            </>
+          ) : null}
+        </LetterWrapper>
+      );
+  }
 }
+
+const UIWrapper = styled.div`
+  & > div {
+    width: 100%;
+    transform: none;
+    position: static;
+  }
+`;
 
 const LetterWrapper = styled.div`
   display: flex;

@@ -23,16 +23,19 @@ export default function UIMessage({
   const router = useRouter();
   return (
     <MessageWrapper>
-      <StickerWrapper>
-        <Image
-          src={image}
-          layout="fixed"
-          width={250}
-          height={250}
-          priority={true}
-          alt={children}
-        />
-      </StickerWrapper>
+      {image ? (
+        <StickerWrapper>
+          <Image
+            src={image}
+            layout="fixed"
+            width={250}
+            height={250}
+            priority={true}
+            alt={children}
+          />
+        </StickerWrapper>
+      ) : null}
+
       <Button
         onClick={() => {
           if (redirectURL) {
