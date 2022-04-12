@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { Icon } from "@iconify/react";
 import { Button } from "../Button/Button";
+import Loader from "../../components/Loader/Loader";
 import UIMessage from "../UIMessage/UIMessage";
 
 export default function Letter({
