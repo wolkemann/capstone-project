@@ -11,8 +11,6 @@ import styled from "styled-components";
 Importing App Components
 
 ============================*/
-import OuterWindow from "../../components/OuterWindow/OuterWindow";
-import { InnerWindow } from "../../components/InnerWindow/InnerWindow";
 import { Button } from "../../components/Button/Button";
 
 export default function UIMessage({
@@ -29,26 +27,24 @@ export default function UIMessage({
         <Image
           src={image}
           layout="fixed"
-          width={180}
-          height={180}
+          width={250}
+          height={250}
           priority={true}
+          alt={children}
         />
       </StickerWrapper>
-      <OuterWindow>
-        <InnerWindow>{children}</InnerWindow>
-      </OuterWindow>
-      {redirectURL ? (
-        <Button
-          onClick={() => {
+      <Button
+        onClick={() => {
+          if (redirectURL) {
             router.push(redirectURL);
-            if (handleSubmitState) {
-              handleSubmitState("idle");
-            }
-          }}
-        >
-          {buttonText}
-        </Button>
-      ) : null}
+          }
+          if (handleSubmitState) {
+            handleSubmitState("idle");
+          }
+        }}
+      >
+        {children} {buttonText}
+      </Button>
     </MessageWrapper>
   );
 }
@@ -69,7 +65,7 @@ const MessageWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  gap: 0.5rem;
+  gap: 1em;
   flex-flow: column wrap;
   align-items: center;
   & button {
