@@ -32,6 +32,7 @@ export default function UIMessage({
           width={250}
           height={250}
           priority={true}
+          alt={children}
         />
       </StickerWrapper>
       <Button
