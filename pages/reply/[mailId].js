@@ -17,9 +17,8 @@ Importing App Components
 import WriteMailForm from "../../components/WriteMailForm/WriteMailForm";
 import Navigation from "../../components/Navigation/Navigation";
 import Letter from "../../components/Letter/Letter";
-import { Button } from "../../components/Button/Button";
-import Loader from "../components/Loader/Loader";
-import UIMessage from "../components/UIMessage/UIMessage";
+import Loader from "../../components/Loader/Loader";
+import UIMessage from "../../components/UIMessage/UIMessage";
 
 export default function ReplyToMail() {
   const [submitState, setSubmitState] = useState("idle");
