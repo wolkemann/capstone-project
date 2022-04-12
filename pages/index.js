@@ -3,6 +3,7 @@
 Importing Libraries
 
 ============================*/
+import useSWR from "swr";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
