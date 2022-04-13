@@ -37,7 +37,7 @@ const StatNumber = styled.div`
   font-size: 1.5em;
   place-self: center;
   text-align: center;
-  padding: 0.5rem 1rem;
+  padding: 10px 20px;
   color: var(--button-text-color);
   background-color: var(--window-background-color);
   border: 2px solid var(--button-border-color);

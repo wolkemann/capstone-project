@@ -5,7 +5,6 @@ import Mail from "../../../schemas/Mail";
 
 export default async function handler(request, response) {
   const { mailId, shuffle, authorId } = request.query;
-  console.log(request.query);
 
   try {
     connectDb();
