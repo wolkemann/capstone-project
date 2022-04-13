@@ -83,7 +83,7 @@ const H1 = styled.h1`
 `;
 
 const Title = styled.h2`
-  margin: 0.1rem 0;
+  margin: 0.1rem auto;
   text-align: center;
 `;
 
