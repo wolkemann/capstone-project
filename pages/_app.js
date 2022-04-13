@@ -2,6 +2,7 @@ import { GlobalStyle } from "../components/GlobalStyles/GlobalStyle";
 import { SWRConfig } from "swr";
 import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
+import "../style.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
