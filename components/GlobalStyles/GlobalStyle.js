@@ -32,7 +32,4 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 }
-  textarea, input[type='button'] {
-    font-family: 'Source Sans Pro', sans-serif;
-  }
 `;
