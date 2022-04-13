@@ -3,6 +3,7 @@
 Importing Libraries
 
 ============================*/
+import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import { getProviders, getSession, signIn, useSession } from "next-auth/react";
@@ -14,6 +15,7 @@ import styled from "styled-components";
 Importing App Components
 
 ============================*/
+import LandingPage from "../../components/LandingPage/LandingPage";
 import PopupTitle from "../../components/PopupTitle/PopupTitle";
 import OuterWindow from "../../components/OuterWindow/OuterWindow";
 import { InnerWindow } from "../../components/InnerWindow/InnerWindow";
@@ -33,35 +35,49 @@ export default function SignIn({ providers }) {
   }, [session, router]);
 
   return (
-    <main>
+    <Main>
       <Head>
         <title>Signin :: Gentle Letters</title>
       </Head>
-      <H1>Welcome to Gentle Letters</H1>
-      <OuterWindow>
-        <PopupTitle>
-          <Title>Sign In</Title>
-        </PopupTitle>
-        <InnerWindow>
-          <ProvidersContainer>
-            {Object.values(providers).map((provider, index) => (
-              <Button
-                key={provider.name}
-                onClick={() =>
-                  signIn(provider.id, {
-                    callbackUrl: "/signin/success",
-                  })
-                }
-              >
-                <Icon icon={providersIcon[index]} color="#6926A9" height="30" />
-                <p>Sign in with {provider.name}</p>
-              </Button>
-            ))}
-            * github at the moment is only for local testing
-          </ProvidersContainer>
-        </InnerWindow>
-      </OuterWindow>
-    </main>
+      <Section>
+        <H1>Welcome to Gentle Letters</H1>
+        <OuterWindow>
+          <PopupTitle>
+            <Title>Sign In</Title>
+          </PopupTitle>
+          <InnerWindow>
+            <ProvidersContainer>
+              {Object.values(providers).map((provider, index) => (
+                <Button
+                  key={provider.name}
+                  onClick={() =>
+                    signIn(provider.id, {
+                      callbackUrl: "/signin/success",
+                    })
+                  }
+                >
+                  <Icon
+                    icon={providersIcon[index]}
+                    color="#6926A9"
+                    height="30"
+                  />
+                  <p>Sign in with {provider.name}</p>
+                </Button>
+              ))}
+              * github at the moment is only for local testing
+            </ProvidersContainer>
+          </InnerWindow>
+        </OuterWindow>
+        <Link href="#about">
+          <a>
+            <BigButton>sadas</BigButton>
+          </a>
+        </Link>
+      </Section>
+      <Section id="about">
+        <LandingPage />
+      </Section>
+    </Main>
   );
 }
 
@@ -102,4 +118,19 @@ const ProvidersContainer = styled.div`
     align-self: center;
     font-size: 1.4em;
   }
+`;
+
+const Main = styled.main`
+  margin: 0;
+`;
+
+const Section = styled.section`
+  padding: 1rem;
+  min-height: 100vh;
+`;
+
+const BigButton = styled(Button)`
+  font-size: 1.5em;
+  padding: 1.5rem 0rem;
+  width: 100%;
 `;
