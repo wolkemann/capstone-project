@@ -28,7 +28,7 @@ export default function LandingPage() {
           <p>
             Today is all about Facebook, Instagram and TickTock. But these
             Socials are just huge shopping malls where people only showcase
-            their best goods, the "very best of" of their lives.
+            their best goods, the &quot;very best of&quot; of their lives.
           </p>
           <p>
             Real life is made of ups and downs, and when you are forced by
