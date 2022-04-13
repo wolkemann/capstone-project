@@ -14,9 +14,6 @@ import { useSession, getSession, signIn, signOut } from "next-auth/react";
 Importing App Components
 
 ============================*/
-
-import WindowOut from "../components/OuterWindow/OuterWindow";
-import { InnerWindow } from "../components/InnerWindow/InnerWindow";
 import { Button } from "../components/Button/Button";
 
 export default function LandingPage() {
@@ -26,9 +23,9 @@ export default function LandingPage() {
         <H1>Welcome to Gentle Letters</H1>
         <BoxWrapper>
           <p>
-            Today is all about Facebook, Instagram and TickTock. But these
-            Socials are just huge shopping malls where people only showcase
-            their best goods, the &quot;very best of&quot; of their lives.
+            Today is all about Facebook, Instagram and TikTok. But these Socials
+            are just huge shopping malls where people only showcase their best
+            goods, the &quot;very best of&quot; of their lives.
           </p>
           <p>
             Real life is made of ups and downs, and when you are forced by
@@ -82,11 +79,15 @@ export default function LandingPage() {
             be so kind to help you.
           </p>
         </BoxWrapper>
-        <Button>
-          Intrigued?
-          <br />
-          Register now!
-        </Button>
+        <Link href="/signin/">
+          <a style={{ textDecoration: "none" }}>
+            <BigButton>
+              Intrigued?
+              <br />
+              Register now!
+            </BigButton>
+          </a>
+        </Link>
       </Section>
     </Main>
   );
@@ -99,12 +100,16 @@ const Main = styled.main`
 `;
 
 const H1 = styled.h1`
+  text-shadow: 5px 5px rgba(78, 10, 71, 0.57);
   text-align: center;
   font-size: 2.5em;
+  margin: 2rem 0;
 `;
 
 const H2 = styled.h2`
   text-align: center;
+  margin: 2rem 0;
+  text-shadow: 5px 5px rgba(78, 10, 71, 0.57);
   font-size: 2.5em;
 `;
 
@@ -127,4 +132,10 @@ const BoxWrapper = styled.article`
   & p {
     margin: 1.5rem 0;
   }
+`;
+
+const BigButton = styled(Button)`
+  font-size: 1.5em;
+  padding: 1.5rem 0rem;
+  width: 100%;
 `;

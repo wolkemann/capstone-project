@@ -35,16 +35,9 @@ export default function SignIn({ providers }) {
   return (
     <main>
       <Head>
-        <title>Login :: Gentle Letters</title>
+        <title>Signin :: Gentle Letters</title>
       </Head>
-      <Image
-        src="/images/title.svg"
-        width="200"
-        height="200"
-        layout="fixed"
-        alt="Gentle Letters logo"
-      />
-      <Title>Welcome to Gentle Letters</Title>
+      <H1>Welcome to Gentle Letters</H1>
       <OuterWindow>
         <PopupTitle>
           <Title>Sign In</Title>
@@ -81,7 +74,16 @@ export async function getServerSideProps(context) {
   };
 }
 
+const H1 = styled.h1`
+  color: #f6c9f1;
+  text-shadow: 5px 5px rgba(78, 10, 71, 0.57);
+  text-align: center;
+  font-size: 2.5em;
+  margin: 2rem 0;
+`;
+
 const Title = styled.h2`
+  margin: 0.1rem 0;
   text-align: center;
 `;
 
