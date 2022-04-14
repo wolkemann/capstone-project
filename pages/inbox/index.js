@@ -32,33 +32,34 @@ export default function Inbox() {
       <Head>
         <title>Inbox :: Gentle Letters</title>
       </Head>
-      {replies ? (
-        fliteredReplies.length > 0 ? (
-          fliteredReplies.map((reply) => {
-            return (
-              <Link
-                href={`/inbox/browse?replyid=${reply._id}&letterid=${reply.mailRepliedId}`}
-                key={reply._id}
-              >
-                <a style={{ textDecoration: "none" }}>
-                  <InboxItem sender={reply.authorId} />
-                </a>
-              </Link>
-            );
-          })
+      <LetterWrapper>
+        {replies ? (
+          fliteredReplies.length > 0 ? (
+            fliteredReplies.map((reply) => {
+              return (
+                <Link
+                  href={`/inbox/browse?replyid=${reply._id}&letterid=${reply.mailRepliedId}`}
+                  key={reply._id}
+                >
+                  <a style={{ textDecoration: "none" }}>
+                    <InboxItem sender={reply.authorId} />
+                  </a>
+                </Link>
+              );
+            })
+          ) : (
+            <UIMessage
+              image="/images/empty.svg"
+              buttonText="Why don't you write a Letter first?"
+              redirectURL="/send/"
+            >
+              There are no replies to browse.
+            </UIMessage>
+          )
         ) : (
-          <UIMessage
-            image="/images/empty.svg"
-            buttonText="Why don't you write a Letter first?"
-            redirectURL="/send/"
-          >
-            There are no replies to browse.
-          </UIMessage>
-        )
-      ) : (
-        <Loader />
-      )}
-
+          <Loader />
+        )}
+      </LetterWrapper>
       <Navigation />
     </main>
   );
@@ -84,4 +85,9 @@ export async function getServerSideProps(context) {
 const LetterWrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
+  justify-content: center;
+  @media (min-width: 470px) {
+    width: 450px;
+    margin: auto;
+  }
 `;

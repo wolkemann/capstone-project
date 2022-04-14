@@ -53,8 +53,10 @@ export default function WriteMailForm({
 }
 
 const Form = styled.form`
+  width: 100%;
   display: flex;
   flex-flow: column wrap;
+  margin: auto;
   & button {
     font-size: 1.2em;
     display: flex;
@@ -62,6 +64,9 @@ const Form = styled.form`
     align-items: center;
     justify-content: center;
     align-self: flex-end;
+  }
+  @media (min-width: 450px) {
+    max-width: 450px;
   }
 `;
 
@@ -86,9 +91,11 @@ const MailContent = styled.textarea`
   font-size: 1em;
   border-width: 0;
   background-color: #f6c9f1;
-
   &:focus {
     outline: 0;
+  }
+  @media (min-width: 800px) {
+    height: 67vh;
   }
 `;
 

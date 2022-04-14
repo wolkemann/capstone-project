@@ -105,17 +105,14 @@ export default function ReplyToMail() {
         <main>
           {mailToReply && !mailToReply.hasAReply ? (
             <Section>
+              <Letter authorId={mailToReply.authorId}>
+                {mailToReply.text}
+              </Letter>
               <WriteMailForm
                 handleSubmit={sendReply}
                 senderName={session.user.nickname}
                 isReplyLetter={true}
               />
-              <article>
-                <Label>Original Letter</Label>
-                <Letter authorId={mailToReply.authorId}>
-                  {mailToReply.text}
-                </Letter>
-              </article>
             </Section>
           ) : null}
           <Navigation />
@@ -146,35 +143,4 @@ const Section = styled.section`
   display: flex;
   flex-flow: column wrap;
   gap: 1rem;
-`;
-
-const Label = styled.h2`
-  width: 180px;
-  padding: 0.5rem;
-  color: var(--text-color);
-  text-align: center;
-  font-size: 1.2em;
-  border: 3px solid var(--window-border-color);
-  border-bottom-width: 0;
-  border-radius: 2px;
-  background-color: #f6c9f1;
-  box-shadow: 5px 5px 2px 1px rgba(78, 10, 71, 0.57);
-`;
-
-const ResponseWindow = styled.div`
-  display: flex;
-  flex-flow: column wrap;
-  height: 60vh;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ResponseTitle = styled.p`
-  font-size: 2.5em;
-  margin: 1rem 0;
-`;
-
-const ResponseMessage = styled.p`
-  font-size: 1.5em;
-  margin: 1rem 0;
 `;

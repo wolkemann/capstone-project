@@ -71,6 +71,9 @@ const MessageWrapper = styled.div`
   gap: 1em;
   flex-flow: column wrap;
   align-items: center;
+  @media (min-width: 450px) {
+    width: 450px;
+  }
   & button {
     width: 100%;
     font-size: 1.5em;

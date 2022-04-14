@@ -120,6 +120,7 @@ const UIWrapper = styled.div`
 `;
 
 const LetterWrapper = styled.div`
+  align-self: center;
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
@@ -131,6 +132,9 @@ const LetterWrapper = styled.div`
   border-radius: 2px;
   background-color: #f6c9f1;
   box-shadow: 5px 5px 2px 1px rgba(78, 10, 71, 0.57);
+  @media screen and (min-width: 800px) {
+    width: 450px;
+  }
 `;
 
 const LetterContent = styled.p`

@@ -25,7 +25,7 @@ export default function LandingPage() {
         <p>
           Real life is made of ups and downs, and when you are forced by
           competition to show only the best of you, then the best of you becomes
-          a manufactured, artificial thing, very far from the real you.
+          a manufactured, artificial thing, very far from reality.
         </p>
         <p>
           Sometimes we need a relaxing place where we can talk about everything
@@ -46,8 +46,8 @@ export default function LandingPage() {
         </p>
         <p>
           To avoid the occurrence of someone using a name that could exactly
-          identify them, the first time someone sign in a random nickname will
-          be assigned.
+          identify them, a random nickname will be assigned the first time
+          someone signs in.
         </p>
         <p>
           The nickname generation process follows this pattern: adjective_animal
@@ -89,14 +89,20 @@ const H2 = styled.h2`
   margin: 2rem 0;
   text-shadow: 5px 5px rgba(78, 10, 71, 0.57);
   font-size: 2.5em;
+  @media (min-width: 800px) {
+    font-size: 3.5em;
+  }
 `;
 
 const H3 = styled.h3`
   text-align: center;
   font-weight: normal;
-  margin: 2rem 0;
+  margin: 3rem 0;
   font-style: italic;
   font-size: 1.5em;
+  @media (min-width: 800px) {
+    font-size: 2em;
+  }
 `;
 
 const Article = styled.article`
@@ -106,6 +112,10 @@ const Article = styled.article`
   min-height: 100vh;
   & p {
     margin: 1.5rem 0;
+    @media (min-width: 800px) {
+      font-weight: 300;
+      font-size: 1.5em;
+    }
   }
 `;
 

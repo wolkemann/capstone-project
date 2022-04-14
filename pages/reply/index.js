@@ -66,5 +66,5 @@ export default function Reply() {
 const MailsWrapper = styled.section`
   display: flex;
   flex-flow: column wrap;
-  gap: 2rem;
+  justify-content: center;
 `;
