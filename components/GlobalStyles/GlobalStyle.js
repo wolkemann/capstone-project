@@ -2,6 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -16,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     --button-background-color: #b4e0fa;
   }
   body {
+
     font-family: 'Source Sans Pro', sans-serif;
     background: hsla(257, 47%, 61%, 1);
     background: linear-gradient(180deg, hsla(257, 47%, 61%, 1) 0%, hsla(247, 53%, 56%, 1) 100%);
@@ -23,9 +28,23 @@ export const GlobalStyle = createGlobalStyle`
     background: -webkit-linear-gradient(180deg, hsla(257, 47%, 61%, 1) 0%, hsla(247, 53%, 56%, 1) 100%);
     color: var(--text-color);
   }
+  @media screen and (min-width: 800px) {
+     body {
+        width: 100%;
+        display:  flex;
+        justify-content: center;
+       font-size: 18px;
+    }
+  }
   main {
     margin: 0.5rem 1rem;
     margin-bottom: 95px;
+  }
+
+  @media screen and (min-width: 800px) {
+     main {
+      width: 800px;
+    }
   }
   a {
   & button > {

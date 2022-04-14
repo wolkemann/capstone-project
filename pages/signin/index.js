@@ -69,8 +69,8 @@ export default function SignIn({ providers }) {
           </InnerWindow>
         </OuterWindow>
         <Link href="#about">
-          <a>
-            <BigButton>sadas</BigButton>
+          <a style={{ textDecoration: "none" }}>
+            <BigButton>Learn more</BigButton>
           </a>
         </Link>
       </Section>
@@ -96,6 +96,9 @@ const H1 = styled.h1`
   text-align: center;
   font-size: 2.5em;
   margin: 2rem 0;
+  @media (min-width: 800px) {
+    font-size: 3.5em;
+  }
 `;
 
 const Title = styled.h2`
