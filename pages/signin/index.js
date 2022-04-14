@@ -40,7 +40,18 @@ export default function SignIn({ providers }) {
         <title>Signin :: Gentle Letters</title>
       </Head>
       <Section>
-        <H1>Welcome to Gentle Letters</H1>
+        <Header>
+          <H1>Welcome to Gentle Letters</H1>
+          <ImageWrap>
+            <Image
+              src="/images/logo.png"
+              width={200}
+              height={200}
+              layout="responsive"
+            />
+          </ImageWrap>
+        </Header>
+
         <OuterWindow>
           <PopupTitle>
             <Title>Sign In</Title>
@@ -93,9 +104,9 @@ export async function getServerSideProps(context) {
 const H1 = styled.h1`
   color: #f6c9f1;
   text-shadow: 5px 5px rgba(78, 10, 71, 0.57);
-  text-align: center;
   font-size: 2.5em;
-  margin: 2rem 0;
+  margin: 1rem 0;
+  margin-bottom: 0;
   @media (min-width: 800px) {
     font-size: 3.5em;
   }
@@ -125,6 +136,26 @@ const ProvidersContainer = styled.div`
 
 const Main = styled.main`
   margin: 0;
+`;
+
+const Header = styled.header`
+  display: flex;
+  flex-flow: column wrap;
+  width: 320px;
+  margin: auto;
+  @media (min-width: 800px) {
+    width: 400px;
+  }
+`;
+
+const ImageWrap = styled.span`
+  align-self: flex-end;
+  display: block;
+  width: 100px;
+  margin-top: -65px;
+  @media (min-width: 800px) {
+    margin-right: -65px;
+  }
 `;
 
 const Section = styled.section`

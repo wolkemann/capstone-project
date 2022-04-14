@@ -47,7 +47,7 @@ export default function LandingPage() {
         <p>
           To avoid the occurrence of someone using a name that could exactly
           identify them, a random nickname will be assigned the first time
-          someone sign in.
+          someone signs in.
         </p>
         <p>
           The nickname generation process follows this pattern: adjective_animal

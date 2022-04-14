@@ -9,7 +9,5 @@ export const Button = styled.button`
   border: 2px solid var(--button-border-color);
   border-radius: 5px;
   box-shadow: 5px 3px 2px 1px rgba(78, 10, 71, 0.57);
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
