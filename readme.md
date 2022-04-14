@@ -17,4 +17,4 @@ Gentle Letters is an anonymous and relaxing social App where you can send letter
 
 ## Demo
 
-A working demo is hosted in Vercel: (https://capstone-project-kohl-chi.vercel.app/)
+A working demo is hosted in Vercel: https://capstone-project-kohl-chi.vercel.app/
