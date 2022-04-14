@@ -39,7 +39,8 @@ export default function SignIn({ providers }) {
       <Head>
         <title>Signin :: Gentle Letters</title>
       </Head>
-      <Section>
+
+      <LogInSection>
         <Header>
           <H1>Welcome to Gentle Letters</H1>
           <ImageWrap>
@@ -50,41 +51,63 @@ export default function SignIn({ providers }) {
               layout="responsive"
             />
           </ImageWrap>
+          <ButtonsWrapper>
+            <Link href="#login">
+              <a
+                style={{
+                  textDecoration: "none",
+                  alignSelf: "flex-start",
+                }}
+              >
+                <LearnMoreButton>Register</LearnMoreButton>
+              </a>
+            </Link>
+            <Link href="#about">
+              <a
+                style={{
+                  textDecoration: "none",
+                  alignSelf: "flex-start",
+                }}
+              >
+                <LearnMoreButton>Learn more</LearnMoreButton>
+              </a>
+            </Link>
+          </ButtonsWrapper>
         </Header>
+      </LogInSection>
 
-        <OuterWindow>
-          <PopupTitle>
-            <Title>Sign In</Title>
-          </PopupTitle>
-          <InnerWindow>
-            <ProvidersContainer>
-              {Object.values(providers).map((provider, index) => (
-                <Button
-                  key={provider.name}
-                  onClick={() =>
-                    signIn(provider.id, {
-                      callbackUrl: "/signin/success",
-                    })
-                  }
-                >
-                  <Icon
-                    icon={providersIcon[index]}
-                    color="#6926A9"
-                    height="30"
-                  />
-                  <p>Sign in with {provider.name}</p>
-                </Button>
-              ))}
-              * github at the moment is only for local testing
-            </ProvidersContainer>
-          </InnerWindow>
-        </OuterWindow>
-        <Link href="#about">
-          <a style={{ textDecoration: "none" }}>
-            <BigButton>Learn more</BigButton>
-          </a>
-        </Link>
-      </Section>
+      <LogInSection id="login">
+        <div style={{ margin: "auto" }}>
+          <OuterWindow>
+            <PopupTitle>
+              <Title>Sign In</Title>
+            </PopupTitle>
+            <InnerWindow>
+              <ProvidersContainer>
+                {Object.values(providers).map((provider, index) => (
+                  <Button
+                    key={provider.name}
+                    onClick={() =>
+                      signIn(provider.id, {
+                        callbackUrl: "/signin/success",
+                      })
+                    }
+                  >
+                    <Icon
+                      icon={providersIcon[index]}
+                      color="#6926A9"
+                      height="30"
+                    />
+                    <p>Sign in with {provider.name}</p>
+                  </Button>
+                ))}
+                * github at the moment is only for local testing
+              </ProvidersContainer>
+            </InnerWindow>
+          </OuterWindow>
+        </div>
+      </LogInSection>
+
       <Section id="about">
         <LandingPage />
       </Section>
@@ -105,8 +128,6 @@ const H1 = styled.h1`
   color: #f6c9f1;
   text-shadow: 5px 5px rgba(78, 10, 71, 0.57);
   font-size: 2.5em;
-  margin: 1rem 0;
-  margin-bottom: 0;
   @media (min-width: 800px) {
     font-size: 3.5em;
   }
@@ -115,23 +136,6 @@ const H1 = styled.h1`
 const Title = styled.h2`
   margin: 0.1rem auto;
   text-align: center;
-`;
-
-const ProvidersContainer = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  flex-flow: column wrap;
-
-  & > button {
-    display: flex;
-    flex-flow: row nowrap;
-  }
-  & > button > p {
-    flex: 1;
-    text-align: center;
-    align-self: center;
-    font-size: 1.4em;
-  }
 `;
 
 const Main = styled.main`
@@ -158,13 +162,46 @@ const ImageWrap = styled.span`
   }
 `;
 
+const ButtonsWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+`;
+
 const Section = styled.section`
   padding: 1rem;
   min-height: 100vh;
 `;
 
-const BigButton = styled(Button)`
-  font-size: 1.5em;
-  padding: 1.5rem 0rem;
-  width: 100%;
+const LogInSection = styled(Section)`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+`;
+
+const LearnMoreButton = styled(Button)`
+  font-size: 1.2em;
+  margin-bottom: 0.5rem;
+  padding: 0.8rem;
+  @media (min-width: 800px) {
+    font-size: 1.5em;
+    padding: 1rem 0.8rem;
+  }
+`;
+
+const ProvidersContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  flex-flow: column wrap;
+
+  & > button {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  & > button > p {
+    flex: 1;
+    text-align: center;
+    align-self: center;
+    font-size: 1.4em;
+  }
 `;

@@ -70,7 +70,7 @@ export default function LandingPage() {
           send a sticker to the person who welcomed your letter and decided to
           be so kind to help you.
         </p>
-        <Link href="/signin/#top">
+        <Link href="/signin/#login">
           <a style={{ textDecoration: "none" }}>
             <BigButton>
               Intrigued?
