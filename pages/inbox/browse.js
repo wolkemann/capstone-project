@@ -153,7 +153,7 @@ export default function SingleReply() {
               <Loader />
             )}
 
-            <Navigation />
+            <Navigation currentPage="inbox" />
           </UserContext.Provider>
         </main>
       );

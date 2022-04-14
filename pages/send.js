@@ -94,7 +94,7 @@ export default function Home() {
             senderName={session.user.nickname}
             handleSubmit={handleSubmit}
           />
-          <Navigation />
+          <Navigation currentPage="send" />
         </main>
       );
   }

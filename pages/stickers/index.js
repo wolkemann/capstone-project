@@ -68,7 +68,7 @@ export default function StickersPage() {
         <Loader />
       )}
 
-      <Navigation />
+      <Navigation currentPage="stickers" />
     </main>
   );
 }
