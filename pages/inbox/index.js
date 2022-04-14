@@ -60,7 +60,7 @@ export default function Inbox() {
           <Loader />
         )}
       </LetterWrapper>
-      <Navigation />
+      <Navigation currentPage="inbox" />
     </main>
   );
 }

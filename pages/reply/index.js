@@ -58,7 +58,7 @@ export default function Reply() {
       ) : (
         <Loader />
       )}
-      <Navigation />
+      <Navigation currentPage="reply" />
     </main>
   );
 }

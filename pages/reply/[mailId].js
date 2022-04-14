@@ -115,7 +115,7 @@ export default function ReplyToMail() {
               />
             </Section>
           ) : null}
-          <Navigation />
+          <Navigation currentPage="reply" />
         </main>
       );
   }
