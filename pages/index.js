@@ -9,6 +9,7 @@ import Link from "next/link";
 import Head from "next/head";
 import styled from "styled-components";
 import { useSession, getSession, signIn, signOut } from "next-auth/react";
+import useUserStat from "../utils/useUserStat";
 /* ==========================
 
 Importing App Components
@@ -24,6 +25,8 @@ import DashboardStatistics from "../components/DashboardStatistics/DashboardStat
 
 export default function Home() {
   const { data: session } = useSession();
+  const lettersSent = useUserStat(session.user.id, "mails");
+  const repliesSent = useUserStat(session.user.id, "replies");
 
   return (
     <main>
@@ -38,13 +41,18 @@ export default function Home() {
           </Logout>
         </PopupTitle>
         <InnerWindow>
-          <DashboardStatistics user={session.user} />
+          <DashboardStatistics
+            lettersSent={lettersSent}
+            repliesSent={repliesSent}
+          />
+
           <Link href="/send/">
             <BigButton>
               <Icon icon="pixelarticons:chart-add" height="55" />
               Write a Letter
             </BigButton>
           </Link>
+
           <Link href="/reply/">
             <BigButton>
               <Icon icon="pixelarticons:reply-all" height="55" />

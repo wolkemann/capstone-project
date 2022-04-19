@@ -55,6 +55,7 @@ export default function ReplyToMail() {
       const mailReplied = await changeMailState.json();
       setSubmitState("success");
     } else {
+      setSubmitState("error");
     }
   }
 
@@ -72,12 +73,12 @@ export default function ReplyToMail() {
       return (
         <main>
           <Head>
-            <title>Yay! :: Gentle Letters</title>
+            <title>Yay! Reply sent! :: Gentle Letters</title>
           </Head>
           <UIMessage
             image="/images/success.svg"
             redirectURL="/"
-            buttonText="Go to your Dashboard"
+            buttonText="Click here to move to your Dashboard"
           >
             Your Reply was successfully sent! Good job! Your kind words will
             surely help your misterious friend.
@@ -92,8 +93,8 @@ export default function ReplyToMail() {
           </Head>
           <UIMessage
             image="/images/error.svg"
-            redirectURL="/send/"
-            buttonText="Try again"
+            redirectURL={`/reply/${mailId}`}
+            buttonText="Click here to try again."
             handleSubmitState={setSubmitState}
           >
             Oops! Something went wrong...
@@ -103,6 +104,9 @@ export default function ReplyToMail() {
     default:
       return (
         <main>
+          <Head>
+            <title>Reply :: Gentle Letters</title>
+          </Head>
           {mailToReply && !mailToReply.hasAReply ? (
             <Section>
               <Letter authorId={mailToReply.authorId}>
@@ -114,7 +118,9 @@ export default function ReplyToMail() {
                 isReplyLetter={true}
               />
             </Section>
-          ) : null}
+          ) : (
+            <Loader />
+          )}
           <Navigation currentPage="reply" />
         </main>
       );

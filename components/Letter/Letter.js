@@ -39,7 +39,7 @@ export default function Letter({
     case "pending":
       return (
         <>
-          <Loader text="Sending Letter..." />
+          <Loader text="Shuffling Letter..." />
         </>
       );
     case "success":
@@ -120,6 +120,7 @@ const UIWrapper = styled.div`
 `;
 
 const LetterWrapper = styled.div`
+  width: 100%;
   align-self: center;
   display: flex;
   flex-flow: column wrap;

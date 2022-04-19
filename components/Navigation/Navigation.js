@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { Icon } from "@iconify/react";
 
 export default function Navigation({ currentPage }) {
@@ -69,8 +68,6 @@ const NavWrapper = styled.nav`
   position: fixed;
   bottom: 0;
   left: 0;
-  /*border: 2px solid var(--window-border-color);
-  border-width: 3px 0 0 0;*/
   background-color: var(--window-background-color);
   box-shadow: 0px -5px 2px 1px rgba(78, 10, 71, 0.57);
 `;
