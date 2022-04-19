@@ -85,7 +85,7 @@ export default function SuccessMessage() {
           <Link href="/send/">
             <Button>
               <Icon
-                icon="pixelarticons:chart-add"
+                icon="fluent:code-text-edit-20-regular"
                 color="#877bf4"
                 height="55"
               />
