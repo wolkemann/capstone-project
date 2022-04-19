@@ -24,6 +24,7 @@ export default async function handler(request, response) {
         const createNickname = await User.findByIdAndUpdate(
           userId,
           {
+            name: randomName,
             nickname: randomName,
           },
           { returnDocument: "after", runValidators: true }
