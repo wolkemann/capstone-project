@@ -38,7 +38,7 @@ export default function Reply() {
                 <Letter
                   key={letter._id}
                   authorId={letter.authorId}
-                  replyId={letter._id}
+                  mailId={letter._id}
                   showActions={true}
                 >
                   {letter.text}
@@ -65,6 +65,7 @@ export default function Reply() {
 
 const MailsWrapper = styled.section`
   display: flex;
+  gap: 1rem;
   flex-flow: column wrap;
   justify-content: center;
 `;

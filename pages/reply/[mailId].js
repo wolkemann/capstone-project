@@ -66,7 +66,7 @@ export default function ReplyToMail() {
           <Head>
             <title>Sending Reply... :: Gentle Letters</title>
           </Head>
-          <Loader text="Sending Letter..." />
+          <Loader text="Sending Reply..." />
         </main>
       );
     case "success":
