@@ -4,12 +4,8 @@ Importing Libraries
 
 ============================*/
 import styled from "styled-components";
-import useUserStat from "../../utils/useUserStat";
 
-export default function DashboardStatistics({ user }) {
-  const lettersSent = useUserStat(user.id, "mails");
-  const repliesSent = useUserStat(user.id, "replies");
-
+export default function DashboardStatistics({ lettersSent, repliesSent }) {
   return (
     <StatsWrapper>
       <StatName>Letters sent</StatName>

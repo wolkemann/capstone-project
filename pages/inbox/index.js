@@ -50,7 +50,7 @@ export default function Inbox() {
           ) : (
             <UIMessage
               image="/images/empty.svg"
-              buttonText="Why don't you write a Letter first?"
+              buttonText="Click here to write a Letter"
               redirectURL="/send/"
             >
               There are no replies to browse.

@@ -13,7 +13,7 @@ export default function Letter({
   children,
   isReplyLetter,
   authorId,
-  replyId,
+  mailId,
   showActions,
 }) {
   const [submitState, setSubmitState] = useState("idle");
@@ -22,7 +22,7 @@ export default function Letter({
 
   async function handleShuffle() {
     const response = await fetch(
-      `/api/mails/${replyId}?shuffle=true&authorId=${authorId}`,
+      `/api/mails/${mailId}?shuffle=true&authorId=${authorId}`,
       {
         method: "PATCH",
         headers: { "content-type": "application/json" },
@@ -39,29 +39,32 @@ export default function Letter({
     case "pending":
       return (
         <>
-          <Loader text="Sending Letter..." />
+          <Loader text="Shuffling Letter..." />
         </>
       );
     case "success":
       return (
         <UIWrapper>
           <UIMessage>
-            Shuffle Successful! Another User will take care of this letter.
+            <p>
+              <Icon icon="mdi:cards" height="40" />
+            </p>
+            <p>
+              Shuffle Successful! Another User will take care of this letter.
+            </p>
           </UIMessage>
         </UIWrapper>
       );
     case "error":
       return (
-        <>
-          <UIMessage
-            image="/images/error.svg"
-            redirectURL="/send/"
-            buttonText="Try again"
-            handleSubmitState={setSubmitState}
-          >
-            Oops! Something went wrong...
+        <UIWrapper>
+          <UIMessage>
+            <p>
+              <Icon icon="mdi:cards" height="40" />
+            </p>
+            <p>Oops! this Letter was not shuffled!</p>
           </UIMessage>
-        </>
+        </UIWrapper>
       );
     default:
       return (
@@ -89,7 +92,7 @@ export default function Letter({
                 </SenderSignature>
                 {showActions ? (
                   <LetterActions>
-                    <Link href={`/reply/${replyId}`}>
+                    <Link href={`/reply/${mailId}`}>
                       <a>
                         <Button>
                           <Icon icon="pixelarticons:reply-all" height="40" />
@@ -98,7 +101,7 @@ export default function Letter({
                       </a>
                     </Link>
                     <Button onClick={handleShuffle}>
-                      <Icon icon="ant-design:cloud-sync-outlined" height="40" />
+                      <Icon icon="mdi:cards" height="40" />
                       Shuffle Letter
                     </Button>
                   </LetterActions>
@@ -120,6 +123,7 @@ const UIWrapper = styled.div`
 `;
 
 const LetterWrapper = styled.div`
+  width: 100%;
   align-self: center;
   display: flex;
   flex-flow: column wrap;
