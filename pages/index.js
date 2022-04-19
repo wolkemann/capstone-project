@@ -48,7 +48,7 @@ export default function Home() {
 
           <Link href="/send/">
             <BigButton>
-              <Icon icon="pixelarticons:chart-add" height="55" />
+              <Icon icon="fluent:code-text-edit-20-regular" height="55" />
               Write a Letter
             </BigButton>
           </Link>

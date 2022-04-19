@@ -13,7 +13,7 @@ export default function Navigation({ currentPage }) {
             }
           >
             <NavItem>
-              <Icon icon="pixelarticons:chart-add" height="40" />
+              <Icon icon="fluent:code-text-edit-20-regular" height="40" />
             </NavItem>
           </Navlink>
         </Link>
