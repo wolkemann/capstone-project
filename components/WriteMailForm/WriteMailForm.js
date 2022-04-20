@@ -35,7 +35,7 @@ export default function WriteMailForm({
             isReplyLetter ? "Write your reply letter" : "Write your letter"
           }
           maxLength={560}
-          required
+          required={true}
         />
         <SignatureWrapper>
           <p>{maxChar - charUsed}</p>

@@ -1,38 +1,62 @@
 import React from "react";
 import WriteMailForm from "./WriteMailForm";
-import {
-  render,
-  fireEvent,
-  screen,
-  cleanup,
-  getByPlaceholderText,
-} from "@testing-library/react";
-import "@testing-library/jest-dom";
+import { render, fireEvent, screen } from "@testing-library/react";
 
 describe("Write mail Form component testing", () => {
   it("renders the standard form correctly", () => {
-    const mailForm = render(<WriteMailForm />);
+    render(<WriteMailForm />);
     expect(
-      mailForm.getByPlaceholderText("Write your letter")
+      screen.getByPlaceholderText("Write your letter")
     ).toBeInTheDocument();
   });
 
   it("renders the reply letter form variation", () => {
-    const mailForm = render(<WriteMailForm isReplyLetter={true} />);
+    render(<WriteMailForm isReplyLetter={true} />);
     expect(
-      mailForm.getByPlaceholderText("Write your reply letter")
+      screen.getByPlaceholderText("Write your reply letter")
     ).toBeInTheDocument();
   });
 
-  it("onchange", () => {
-    const mailForm = render(<WriteMailForm />);
-    const formTextarea = mailForm.getByPlaceholderText("Write your letter");
+  it("changes the input on change", () => {
+    render(<WriteMailForm />);
+    const formTextarea = screen.getByRole("textbox");
 
-    function handleOnChange(event) {
-      return event.target.value;
-    }
+    expect(formTextarea).toBeInTheDocument();
 
-    fireEvent.change(formTextarea, { target: { value: "a" } });
-    expect(formTextarea.handleOnChange).toHaveBeenCalledTimes(1);
+    fireEvent.change(formTextarea, {
+      target: { value: "A testing letter text" },
+    });
+    expect(formTextarea.value).toBe("A testing letter text");
+  });
+
+  it("calls the handleSubmit function when the submit button is pushed", () => {
+    const testSubmit = jest.fn();
+
+    render(<WriteMailForm handleSubmit={testSubmit} />);
+    const submitButton = screen.getByRole("button");
+
+    fireEvent.click(submitButton);
+
+    expect(testSubmit).toHaveBeenCalledTimes(1);
+  });
+
+  it("calls the handleSubmit function when the submit button is pushed", () => {
+    const testSubmit = jest.fn((event) => {
+      event.preventDefault();
+      return "to replace when the code works";
+    });
+
+    render(<WriteMailForm handleSubmit={testSubmit} />);
+
+    const formTextarea = screen.getByRole("textbox");
+    const submitButton = screen.getByRole("button");
+
+    fireEvent.change(formTextarea, {
+      target: { value: "A testing letter text" },
+    });
+
+    fireEvent.click(submitButton);
+
+    expect(testSubmit).toHaveBeenCalledWith("A testing letter text");
   });
 });
