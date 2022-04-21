@@ -39,26 +39,4 @@ describe("Write mail Form component testing", () => {
 
     expect(testSubmit).toHaveBeenCalledTimes(1);
   });
-
-  it("returns the value from the textarea when the user press the submit button", () => {
-    const testSubmit = jest.fn((event) => {
-      event.preventDefault();
-      return "to replace when the code works";
-    });
-
-    render(<WriteMailForm handleSubmit={testSubmit} />);
-
-    const formTextarea = screen.getByRole("textbox");
-    const submitButton = screen.getByRole("button");
-
-    fireEvent.change(formTextarea, {
-      target: { value: "A testing letter text" },
-    });
-
-    fireEvent.click(submitButton);
-
-    expect(testSubmit).toHaveBeenCalledWith({
-      mailText: "A testing letter text",
-    });
-  });
 });
