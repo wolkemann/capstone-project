@@ -77,7 +77,7 @@ export default function SignIn({ providers }) {
       </LogInSection>
 
       <LogInSection id="login">
-        <div style={{ margin: "auto" }}>
+        <div style={{ margin: "auto", width: "100%" }}>
           <OuterWindow>
             <PopupTitle>
               <Title>Sign In</Title>
@@ -101,7 +101,6 @@ export default function SignIn({ providers }) {
                     <p>Sign in with {provider.name}</p>
                   </Button>
                 ))}
-                * github at the moment is only for local testing
               </ProvidersContainer>
             </InnerWindow>
           </OuterWindow>
