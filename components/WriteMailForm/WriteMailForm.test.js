@@ -40,7 +40,7 @@ describe("Write mail Form component testing", () => {
     expect(testSubmit).toHaveBeenCalledTimes(1);
   });
 
-  it("calls the handleSubmit function when the submit button is pushed", () => {
+  it("returns the value from the textarea when the user press the submit button", () => {
     const testSubmit = jest.fn((event) => {
       event.preventDefault();
       return "to replace when the code works";
@@ -57,6 +57,8 @@ describe("Write mail Form component testing", () => {
 
     fireEvent.click(submitButton);
 
-    expect(testSubmit).toHaveBeenCalledWith("A testing letter text");
+    expect(testSubmit).toHaveBeenCalledWith({
+      mailText: "A testing letter text",
+    });
   });
 });
