@@ -35,7 +35,7 @@ export default function WriteMailForm({
             isReplyLetter ? "Write your reply letter" : "Write your letter"
           }
           maxLength={560}
-          required
+          required={true}
         />
         <SignatureWrapper>
           <p>{maxChar - charUsed}</p>
@@ -46,7 +46,7 @@ export default function WriteMailForm({
       </LetterBody>
       <Button>
         <Icon icon="bi:send" height="40" />
-        {isReplyLetter ? "Send your reply" : "Send your Letter"}
+        {isReplyLetter ? "Send reply" : "Send Letter"}
       </Button>
     </Form>
   );

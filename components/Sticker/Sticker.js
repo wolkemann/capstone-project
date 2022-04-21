@@ -17,7 +17,6 @@ export default function Sticker({ image, isSelected, onStickerClick }) {
 }
 
 export const StickerWrapper = styled.div`
-  width: 136px;
   display: block;
   padding: 1rem;
   text-align: center;
