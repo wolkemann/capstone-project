@@ -1,6 +1,15 @@
 # Gentle Letters
 
-`npm install`
+## Project Setup
+
+- Clone this repository
+- Use .env.example to create your own .env inside the root folder
+- Add your API_KEY from TMDB
+- Inside root folder install all dependencies via `$ npm install`
+- Run app in development mode via `$ npm run dev`
+- Client: http://localhost:3000/
+- Run tests via `$ npm run test`
+- Run Storybook via `$ npm run storybook`
 
 ## About
 
@@ -16,6 +25,7 @@ Gentle Letters is an anonymous and relaxing social App where you can send letter
 - Next.js
   - NexAuth.js
   - SWR
+- MongoDB
 
 ## Demo
 
