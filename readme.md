@@ -4,7 +4,6 @@
 
 - Clone this repository
 - Use .env.example to create your own .env inside the root folder
-- Add your API_KEY from TMDB
 - Inside root folder install all dependencies via `$ npm install`
 - Run app in development mode via `$ npm run dev`
 - Client: http://localhost:3000/
