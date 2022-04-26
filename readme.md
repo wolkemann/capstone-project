@@ -26,6 +26,6 @@ Gentle Letters is an anonymous and relaxing social App where you can send letter
   - SWR
 - MongoDB
 
-## Demo
+## Demo version
 
 A working demo is hosted in Vercel: https://capstone-project-kohl-chi.vercel.app/
